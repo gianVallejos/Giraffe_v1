@@ -1,2 +1,2 @@
-# salespoint-gv
-Sales Point unconnected web project
+# Sales Point - GVallejos
+Sales Point Web Project
