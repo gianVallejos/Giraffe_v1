@@ -46,6 +46,7 @@
                                 <thead>
                                     <tr>
                                         <!-- <th class="col-md-2 col-xs-1 text-center">#</th> -->
+                                        <th class="text-center">Cant.</th>
                                         <th class="text-center">Producto</th>
                                         <th class="text-center">Precio</th>
                                         <th class="col-md-1 col-xs-1"></th>
