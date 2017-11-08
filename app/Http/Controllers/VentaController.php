@@ -16,10 +16,19 @@ class VentaController extends Controller
     private $path = 'venta';
     public function index()
     {
+        // Get id Venta
+        $idVenta = DB::select('call getLastVenta()');
+
+        if( !empty($idVenta) ){
+            $idVenta = $idVenta[0]->NRO_PRESUPUESTO + 1;
+        }else{
+            $idVenta = 1;
+        }
+
         $data = DB::table('productos')
                     ->orderBy('id')
                     ->get();
-          return view($this->path . '.index', compact('data'));
+          return view($this->path . '.index', compact('data', 'idVenta'));
     }
 
     /**
