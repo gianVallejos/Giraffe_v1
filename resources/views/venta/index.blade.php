@@ -13,7 +13,12 @@
         <div class="col-md-4 col-xs-4">
           <div class="panel panel-default">
               <div class="panel-heading text-center title"><b>LISTA DE VENTAS</b></div>
-              <div class="panel-body" style="padding-top: 29px;">
+              <div class="panel-body" style="padding-top: 16px;">
+                  <div class="row">
+                    <div id="nroVenta" class="col-md-12 col-xs-12 text-center">
+                        <h4><strong>Venta Nro: {{ $idVenta }}</strong></h4>
+                    </div>
+                  </div>
                   <div class="row">
                     <div class="col-md-12 col-xs-12 montos-bottom">
                         <div class="row">
