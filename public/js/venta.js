@@ -1,4 +1,3 @@
-var montoDeVenta = 0;
 var nroProductosCartShopping = 0;
 var cartShopping = new Array();
 
@@ -9,23 +8,86 @@ var igv;
 function addProductToCart(actualProducto){
     var producto = JSON.parse(actualProducto);
 
-    cartShopping[nroProductosCartShopping] = [producto["id"], producto["nombre"], producto["descripcion"], producto["precio"]];
+    var ind_actual = productIdExistInCart(producto["id"], cartShopping, nroProductosCartShopping);
 
-    var aux = nroProductosCartShopping + ", " + producto["id"];
-    var script = '<tr id="'+ nroProductosCartShopping + "-" + producto["id"] + '">' +
-                    // '<td>'+ cnt +'</td>' +
-                    '<td class="text-left">'+ producto["nombre"]+'<br><span>'+ mostrarDetalle(producto["descripcion"]) + '</span></td>' +
-                    '<td id="precio">'+ producto["precio"]+'</td>' +
-                    // '<td>' +
-                    // '<a href="#" onclick="removeProductFromCart('+ aux +')" class="btn-giraffe-icon flaticon-rounded-remove-button"></a>'
-                    // '</td>' +
-                  '<tr>';
-    $('#CartShoppingTable tr:last').after(script);
+    if( ind_actual == -1 ){
+      cartShopping[nroProductosCartShopping] = [producto["id"], producto["nombre"], producto["descripcion"], producto["precio"], 1];
+      nroProductosCartShopping++;
+    }else{
+      cartShopping[ind_actual][4] = parseFloat(cartShopping[ind_actual][4]) + 1;
+    }
 
-    nroProductosCartShopping++;
-    montoDeVenta += parseFloat(producto["precio"]);
+    mostrarCartShopping(cartShopping, nroProductosCartShopping);
+}
 
-    addTotalVenta(montoDeVenta);
+function productIdExistInCart(producto_id, cartShopping, nroProductosCartShopping){
+  	if( nroProductosCartShopping == 0) return -1;
+
+  	for(var ind = 0; ind < nroProductosCartShopping; ind++ ){
+  	   if( cartShopping[ind][0] == producto_id ) return ind;
+  	}
+  	return -1;
+}
+
+function deleteProductFromCart(product_id){
+    console.log(product_id);
+  	if( nroProductosCartShopping == 0 ){
+      swal('Error', 'Cart Shopping is Empty', 'Warning');
+    }
+
+  	var ind_actual = productIdExistInCart(product_id, cartShopping, nroProductosCartShopping);
+  	if( ind_actual == -1 ){
+  	    swal('Error', 'There is not product to delete', 'Warning');
+  	}else{
+        if( cartShopping[ind_actual][4] == 1 ){
+      	    cartShopping.splice(ind_actual, 1);
+      	    nroProductosCartShopping--;
+        }else{
+            cartShopping[ind_actual][4] = parseFloat(cartShopping[ind_actual][4]) - 1;
+        }
+  	}
+
+  	mostrarCartShopping(cartShopping, nroProductosCartShopping);
+}
+
+function mostrarCartShopping(cartShopping, nroProductosCartShopping){
+  resetTable();
+
+	var montoDeVenta = 0;
+	for( var ind = 0; ind < nroProductosCartShopping; ind++ ){
+		var montoDeProducto = parseFloat(cartShopping[ind][3]) * parseFloat(cartShopping[ind][4]);
+		var script = '<tr>' +
+            				'<td>' + cartShopping[ind][4] + '</td>' +
+            				'<td class="text-left">' + cartShopping[ind][1] +
+            				'<br><span>' + mostrarDetalle(cartShopping[ind][2]) + '</span></td>' +
+            				'<td id="precio">' + round(montoDeProducto, 2) + '</td>' +
+            				'<td>' +
+                        '<a href="#" onclick="deleteProductFromCart('+ cartShopping[ind][0] +')" class="btn-giraffe-icon flaticon-rounded-remove-button">' +
+                    '</td>' +
+			           '</tr>';
+		montoDeVenta += montoDeProducto;
+		$('#CartShoppingTable tr:last').after(script);
+	}
+	addTotalVenta(montoDeVenta);
+
+}
+
+function resetTable(){
+    var script = '<thead>' +
+                    '<tr>' +
+                        '<th class="text-center">Cant.</th>' +
+                        '<th class="text-center">Producto</th>' +
+                        '<th class="text-center">Precio</th>' +
+                        '<th class="col-md-1 col-xs-1"></th>' +
+                    '</tr>' +
+                '</thead>' +
+                '<tbody class="text-center">' +
+                    '<tr>' +
+                    '</tr>' +
+                '</tbody>';
+
+    $('#CartShoppingTable').empty();
+    $('#CartShoppingTable').html(script);
 }
 
 function round(num,dec){
@@ -40,22 +102,6 @@ function addTotalVenta(montoDeVenta){
     $('#subtotal').text("S/ " + st);
     $('#igv').text("S/ " + igv);
     $('#total').text("S/ " + mv);
-}
-
-function removeProductFromCart(nroProductosCartShopping, id){
-    idRow = nroProductosCartShopping + "-" + id;
-    precio = parseFloat($('#CartShoppingTable #'+ idRow +' #precio').text());
-
-    montoDeVenta -= precio;
-    addTotalVenta(montoDeVenta);
-
-    $('#CartShoppingTable #' + idRow).remove();
-
-    cartShopping.splice(nroProductosCartShopping, 1);
-
-    console.log(cartShopping);
-    console.log(nroProductosCartShopping);
-
 }
 
 function buscarProducto(){
@@ -108,6 +154,7 @@ $(document).ready(function(){
       if( cartShopping.length == 0 ){
           swal ( "Alerta" ,  "Debe agregar productos a la cesta de venta para efectuar la operación." ,  "warning" );
       }else{
+        console.log(cartShopping);
           $.ajax({
               type: 'GET',
               url: 'http://localhost/giraffe/public/api-v1/save-venta',
@@ -192,17 +239,21 @@ $(document).ready(function(){
                         '</div>' +
                       '</div>' +
                       '<div class="row">' +
+                        '<div class="col-md-2 col-xs-2 text-left">CANT.</div>' +
                         '<div class="col-md-6 col-xs-6 text-left">PRODUCTO</div>' +
-                        '<div class="col-md-6 col-xs-6 text-right">PRECIO (S/)</div>' +
-                      '</div>' +
-                      '<div class="row text-left" style="padding-left: 7px;">';
-                  console.log(cartShopping);
+                        '<div class="col-md-4 col-xs-4 text-right">PRECIO (S/)</div>' +
+                      '</div>';
+
                   for(var i = 0; i < cartShopping.length; i++){
-                      string += '<div class="col-md-8 col-xs-8">' + cartShopping[i][1] + ' ' + mostrarDetalle(cartShopping[i][2]) + '</div>';
-                      string += '<div class="col-md-4 col-xs-4 text-center">' + cartShopping[i][3] + '</div>';
+                      var precio = parseFloat(cartShopping[i][4]) * parseFloat(cartShopping[i][3]);
+                      string += '<div class="row text-left" style="padding-left: 7px;">';
+                      string += '<div class="col-md-1 col-xs-1 text-center">' + cartShopping[i][4] + '</div>';
+                      string += '<div class="col-md-6 col-xs-6">' + cartShopping[i][1] + ' ' + mostrarDetalle(cartShopping[i][2]) + '</div>';
+                      string += '<div class="col-md-4 col-xs-4 text-right">' + round(precio, 2) + '</div>';
+                      string += '</div>';
+
                   }
       string +=
-                       '</div>' +
                        '<div class="row" style="padding-top: 19px;">' +
                             '<div class="col-md-8 col-xs-8 text-right">SUBTOTAL: </div>' +
                             '<div class="col-md-4 col-xs-4 text-center" >S/ '+ st +'</div>' +
@@ -216,6 +267,9 @@ $(document).ready(function(){
                             '<div class="col-md-4 col-xs-4 text-center" >S/ ' + mv +'</div>' +
                        '</div>';
       $('#vouchercontent').html(string);
+    }
+    function round(num,dec){
+        return Number(num).toFixed(2);
     }
 
     function mostrarDetalle(detalle){
@@ -236,6 +290,7 @@ $(document).ready(function(){
 
         var script = '<thead>' +
                         '<tr>' +
+                            '<th class="text-center">Cant.</th>' +
                             '<th class="text-center">Producto</th>' +
                             '<th class="text-center">Precio</th>' +
                             '<th class="col-md-1 col-xs-1"></th>' +

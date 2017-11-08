@@ -19,7 +19,7 @@ class WsGiraffeController extends Controller
 
     public function saveVenta(Request $request){
           $cartShopping = $request->input('cartShopping');
-
+          print_r($cartShopping); die();
       try{
           // Get id Venta
           $idVenta = DB::select('call getLastVenta()');
