@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Personal;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PersonalController extends Controller
 {
@@ -23,8 +24,11 @@ class PersonalController extends Controller
     public function index()
     {
         try {
-            $personals = Personal::all();
-            $users = User::all();
+            $personals =  DB::table('personals')
+                ->join('users', 'personals.id', '=', 'users.id')
+                ->select('personals.*', 'users.email')
+                ->get();
+
             $cantPersonals = Personal::get()->count();
             return view($this->path . '.index', compact('personals', 'users', 'cantPersonals'));
         } catch (Exception $e) {
@@ -73,7 +77,10 @@ class PersonalController extends Controller
     public function edit($id)
     {
         $personal = Personal::findOrFail($id);
-        return view($this->path . '.edit', compact('personal'));
+        $users = DB::table('users')
+            ->select('id', 'email')
+            ->get();
+        return view($this->path . '.edit', compact('personal', 'users'));
     }
 
     /**
@@ -96,7 +103,7 @@ class PersonalController extends Controller
 
         $personal->save();
 
-        alert()->success('Personal modificado correctamente', 'Modificado' );
+        alert()->success('Personal modificado correctamente', 'Modificado');
 
         return redirect()->route('personalindex');
     }
