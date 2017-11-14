@@ -14,21 +14,44 @@ class VentaController extends Controller
      * @return \Illuminate\Http\Response
      */
     private $path = 'venta';
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function index()
     {
-        // Get id Venta
-        $idVenta = DB::select('call getLastVenta()');
+          // Get id Venta
+          $idVenta = DB::select('call getLastVenta()');
 
-        if( !empty($idVenta) ){
+          if( !empty($idVenta) ){
             $idVenta = $idVenta[0]->NRO_PRESUPUESTO + 1;
-        }else{
+          }else{
             $idVenta = 1;
-        }
+          }
 
-        $data = DB::table('productos')
-                    ->orderBy('id')
-                    ->get();
+          $data = DB::table('productos')
+                      ->orderBy('id')
+                      ->get();
           return view($this->path . '.index', compact('data', 'idVenta'));
+    }
+
+    public function caja(){
+
+      // Get id Venta
+      $idVenta = DB::select('call getLastVenta()');
+
+      if( !empty($idVenta) ){
+        $idVenta = $idVenta[0]->NRO_PRESUPUESTO + 1;
+      }else{
+        $idVenta = 1;
+      }
+
+      $data = DB::table('productos')
+                  ->orderBy('id')
+                  ->get();
+
+        return view($this->path . '.caja', compact('data', 'idVenta'));
     }
 
     /**
