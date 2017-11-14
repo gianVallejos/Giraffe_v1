@@ -32,7 +32,9 @@
                                                 <td class="text-center">{{ $personal->nombres }}</td>
                                                 <td class="text-center">{{ $personal->apellidos }}</td>
                                                 <td class="text-center">{{ $personal->dni }}</td>
-                                                <td class="text-center"></td>
+                                                <td class="text-center">
+                                                    {{$personal->email}}
+                                                </td>
                                                 <td class="text-center">
                                                     <button class="btn btn-xs btn-success"
                                                             onclick="mostrarDetallePersonal('{{ json_encode($personal) }}')"
@@ -41,7 +43,8 @@
                                                 </td>
                                                 <td class="text-center"><a
                                                             href="{{ route('personals.edit', $personal->id) }}"
-                                                            class="btn btn-xs btn-warning">Editar</a></td>
+                                                            class="btn btn-xs btn-warning">Editar</a>
+                                                </td>
                                                 <td class="text-center">
                                                     <form action="{{ route('personals.destroy', $personal->id) }}"
                                                           method="post">

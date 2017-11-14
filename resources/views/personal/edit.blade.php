@@ -14,7 +14,8 @@
                     <div class="panel-heading text-center title">MODIFICAR PERSONAL</div>
                     <div class="panel-body">
 
-                        <form class="form-horizontal" action="/Giraffe_v1/public/personals/{{ $personal->id }}" method="POST">
+                        <form class="form-horizontal" action="/Giraffe_v1/public/personals/{{ $personal->id }}"
+                              method="POST">
                             <input type="hidden" name="_method" value="PUT">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
@@ -67,9 +68,12 @@
 
                                 <label for="email" class="col-md-1 col-xs-1 control-label">Email</label>
                                 <div class="col-md-4 col-xs-3">
-                                    <input id="email" type="text" class="form-control" name="email"
-                                           value="{{ $personal->email }}" placeholder="E-mail">
-
+                                    @foreach($users as $user)
+                                        @if($user->id == $personal->id)
+                                            <input id="email" type="text" class="form-control" name="email"
+                                                   value="{{ $user->email }}" placeholder="E-mail">
+                                        @endif
+                                    @endforeach
                                     @if ($errors->has('email'))
                                         <span class="help-block">
                                       <strong>{{ $errors->first('email')}}</strong>
