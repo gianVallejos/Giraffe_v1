@@ -29,6 +29,11 @@ Route::get('productos', 'ProductoController@index')->name('productoindex');
 //Venta
 Route::resource('ventas', 'VentaController');
 Route::get('ventas', 'VentaController@index')->name('ventaindex');
+Route::get('venta/cajas', ['uses' => 'VentaController@caja'])->name('ventacaja');
 
 //Ws Routes
 Route::get('api-v1/save-venta', 'WsGiraffeController@saveVenta')->name('saveVenta');
+
+//Personal
+Route::resource('personals', 'PersonalController');
+Route::get('personals', 'PersonalController@index')->name('personalindex');

@@ -29,6 +29,10 @@ img{
     height: auto;
 }
 
+#idVenta{
+    display: inline-block;
+}
+
 .navbar-brand>img{
     margin-top: -15px;
     width: auto;
@@ -341,4 +345,16 @@ footer .texto a{
 
 #CartShoppingTable.table > tbody > tr > td#precio{
     padding-top: 18px;
+}
+
+/* Buttons Home */
+.btn-giraffe-home{
+    background-color: #87B0FF;
+    color: #000;
+    font-weight: bold;
+    border: 0px;
+    border-radius: 5px;
+    padding: 25px;
+    box-shadow: 5px 5px 1px #2e3b54;
+    transition-duration: 0.4s;
 }

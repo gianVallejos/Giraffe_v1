@@ -1,5 +1,6 @@
 var nroProductosCartShopping = 0;
 var cartShopping = new Array();
+var actualIdVenta = -1;
 
 var mv;
 var st;
@@ -137,6 +138,17 @@ $(document).ready(function(){
     $(document).ajaxComplete(function(){
         $("#load-container").css("display", "none");
     });
+    //
+    // $('#fsModal').on('shown', function(){
+    //     $("#load-container").css("display", "block");
+    // });
+    //
+    // $('#ventas-frame').ready(function () {
+    //
+    // });
+    // $('#ventas-frame').on('on', function () {
+    //     $('#load-container').css('display', 'none');
+    // });
 
     $('#btn-nuevo').click(function(){
         resetDataOfPages();
@@ -154,7 +166,7 @@ $(document).ready(function(){
       if( cartShopping.length == 0 ){
           swal ( "Alerta" ,  "Debe agregar productos a la cesta de venta para efectuar la operación." ,  "warning" );
       }else{
-        console.log(cartShopping);
+        // console.log(cartShopping);
           $.ajax({
               type: 'GET',
               url: 'http://localhost/giraffe/public/api-v1/save-venta',
@@ -164,7 +176,8 @@ $(document).ready(function(){
                   cartShopping: cartShopping
               },
               success: function(data){
-                  console.log(data);
+                  actualIdVenta = data["idVenta"];
+
                   $('#modalPagar').modal('toggle');
                   //Generate Voucher HTML
                   generateHTMLVoucher(cartShopping, data['idVenta']);
@@ -303,6 +316,9 @@ $(document).ready(function(){
 
         $('#CartShoppingTable').empty();
         $('#CartShoppingTable').html(script);
+
+        actualIdVenta = parseFloat(actualIdVenta) + 1;
+        $('#idVenta').text(actualIdVenta);
 
         addTotalVenta(montoDeVenta);
     }
