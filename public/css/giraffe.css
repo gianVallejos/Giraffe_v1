@@ -25,8 +25,8 @@ body{
 }
 
 img{
-    width: 100%;
-    height: auto;
+    /*width: 100%;*/
+    /*height: auto;*/
 }
 
 #idVenta{
@@ -39,12 +39,12 @@ img{
     height: 46px;
 }
 
-.btn{
+.btn-xs{
     color: #000;
     font-size: 11px;
 }
 
-.btn:hover{
+.btn-xs:hover{
     text-decoration: underline;
     color: #000;
     font-size: 11px;
@@ -174,20 +174,28 @@ img{
   border-color: #E6E0CF;
 }
 
-a.btn-giraffe-icon.flaticon-plus-sign-in-a-black-circle{
+button.btn-giraffe-icon{
+  background-color: transparent;
+  border: none;
+}
+
+button:focus.btn-giraffe-icon, button:active.btn-giraffe-icon{
+  outline: none;
+}
+
+button.btn-giraffe-icon.flaticon-plus-sign-in-a-black-circle{
     font-weight: bold;
     color: #0F8800;
     text-decoration: none;
 }
 
-a:hover.btn-giraffe-icon.flaticon-plus-sign-in-a-black-circle{
+button:hover.btn-giraffe-icon.flaticon-plus-sign-in-a-black-circle{
     text-decoration: none;
     color: #4a9600;
 }
 
 .montos-bottom{
     font-size: 14px;
-    border-bottom: 1px solid #Ccc;
     padding-bottom: 25px;
 }
 
@@ -357,4 +365,23 @@ footer .texto a{
     padding: 25px;
     box-shadow: 5px 5px 1px #2e3b54;
     transition-duration: 0.4s;
+}
+
+#monto-pago.form-control, #monto-vuelto.form-control{
+    height: 64px;
+    font-size: 18px;
+    text-align: center;
+}
+
+.margin-null{
+    padding-left: 15px;
+    padding-right: 0px;
+}
+
+.p-t-25{
+    padding-top: 25px;
+}
+
+.sweet-alert h2{
+    margin-bottom: 7px;
 }
