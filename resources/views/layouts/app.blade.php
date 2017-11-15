@@ -15,7 +15,7 @@
     <link href="{{ asset('css/table.css?v=1.0.2') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('sweetalert/sweetalert.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/giraffe.css?v=1.0.21') }}" rel="stylesheet">
+    <link href="{{ asset('css/giraffe.css?v=1.0.22') }}" rel="stylesheet">
     <!-- <link rel="stylesheet" href="{{ asset('css/modal-fullscreen.css?v=1.0.12') }}"> -->
 
     <link rel="shortcut icon" href="{{{ asset('images/favicon.ico') }}}">
@@ -129,6 +129,7 @@
 <script src="{{ asset('js/printThis.js?v=1.0.1') }}"></script>
 <script src="{{ asset('js/venta.js?v=1.0.16') }}"></script>
 <script src="{{ asset('js/personal.js?v=1.0.1') }}"></script>
+<script src="{{ asset('js/cuadrecaja.js?v=1.0.1') }}"></script>
 <script src="{{ asset('sweetalert/sweetalert.min.js') }}"></script>
 
 @include('sweet::alert')

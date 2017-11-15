@@ -54,7 +54,7 @@ class VentaController extends Controller
         return view($this->path . '.caja', compact('data', 'idVenta'));
     }
 
-    public function cuadrarCaja(){
+    public function cuadrarcaja(){
 
         return view($this->path . '.cuadrarcaja');
     }
