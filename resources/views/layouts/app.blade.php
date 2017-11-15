@@ -63,6 +63,11 @@
                                             Registro de Usuarios
                                         </a>
                                     </li>
+                                    <li>
+                                        <a href="{{ route('clienteindex') }}">
+                                            Cliente
+                                        </a>
+                                    </li>
                                 </ul>
                             </li>
                             @endguest
@@ -130,6 +135,7 @@
 <script src="{{ asset('js/venta.js?v=1.0.16') }}"></script>
 <script src="{{ asset('js/personal.js?v=1.0.1') }}"></script>
 <script src="{{ asset('js/cuadrecaja.js?v=1.0.1') }}"></script>
+<script src="{{ asset('js/detalle.js?v=1.0.1') }}"></script>
 <script src="{{ asset('sweetalert/sweetalert.min.js') }}"></script>
 
 @include('sweet::alert')
