@@ -1,12 +1,14 @@
 var nroProductosCartShopping = 0;
 var cartShopping = new Array();
 var actualIdVenta = -1;
+var number_event = -1;
 
 var mv;
 var st;
 var igv;
 
 function addProductToCart(actualProducto){
+  if( number_event != 13 ){
     var producto = JSON.parse(actualProducto);
 
     var ind_actual = productIdExistInCart(producto["id"], cartShopping, nroProductosCartShopping);
@@ -17,8 +19,11 @@ function addProductToCart(actualProducto){
     }else{
       cartShopping[ind_actual][4] = parseFloat(cartShopping[ind_actual][4]) + 1;
     }
+    var evt = window.event || arguments.callee.caller.arguments[0];
 
     mostrarCartShopping(cartShopping, nroProductosCartShopping);
+  }
+  number_event = -1;
 }
 
 function productIdExistInCart(producto_id, cartShopping, nroProductosCartShopping){
@@ -70,7 +75,6 @@ function mostrarCartShopping(cartShopping, nroProductosCartShopping){
 		$('#CartShoppingTable tr:last').after(script);
 	}
 	addTotalVenta(montoDeVenta);
-
 }
 
 function resetTable(){
@@ -138,17 +142,46 @@ $(document).ready(function(){
     $(document).ajaxComplete(function(){
         $("#load-container").css("display", "none");
     });
-    //
-    // $('#fsModal').on('shown', function(){
-    //     $("#load-container").css("display", "block");
-    // });
-    //
-    // $('#ventas-frame').ready(function () {
-    //
-    // });
-    // $('#ventas-frame').on('on', function () {
-    //     $('#load-container').css('display', 'none');
-    // });
+
+    $('#monto-pago').keyup(function(){
+        vueltoFunction();
+    });
+
+    $("#monto-pago").on("keyup keydown change",function(event){
+        vueltoFunction();
+    });
+
+    $('#modalPagar').on('shown.bs.modal', function () {
+        $('#btn-print-voucher').focus();
+    });
+
+    $('body').keypress(function(e){
+        number_event = e.which;
+
+        if( number_event == 13 && $('#monto-pago').is(":focus") ){
+            $('#btn-pagar').focus();
+        }else if( ($("element").data('bs.modal') || {}).isShown && number_event == 13 ){
+            resetDataOfPages();
+            $('#modal').modal('toggle');            
+        }else if( number_event == 13 ){
+            $('#monto-pago').focus();
+        }else if( number_event == 9 ){
+            $('#vouchercontent').printThis();
+        }
+
+    });
+
+    function vueltoFunction(){
+        var vuelto = parseFloat(mv - parseFloat($('#monto-pago').val())) || 0;
+
+        vuelto = vuelto * -1;
+        if( vuelto < 0 ){
+          $('#monto-vuelto').css("color", "#f00");
+        }else{
+          $('#monto-vuelto').css("color", "#000");
+        }
+        $('#monto-vuelto').val(round(vuelto, 2));
+    }
 
     $('#btn-nuevo').click(function(){
         resetDataOfPages();
@@ -163,8 +196,42 @@ $(document).ready(function(){
     };
 
     function guardarVenta(cartShopping){
+      var montoCliente = $('#monto-pago').val();
+
       if( cartShopping.length == 0 ){
-          swal ( "Alerta" ,  "Debe agregar productos a la cesta de venta para efectuar la operación." ,  "warning" );
+          swal({
+              title: "No hay productos",
+              text: "Debe agregar productos a la cesta de venta para efectuar la operación.",
+              type: "warning",
+              closeOnConfirm: false
+          },
+            function(){
+                swal.close();
+                $('#myInput').focus();
+          });
+
+      }else if( montoCliente == '' ){
+          swal({
+              title: "Pago del cliente está vacío",
+              text: "Debe agregar un monto de pago por parte del cliente",
+              type: "warning",
+              closeOnConfirm: false
+          },
+            function(){
+                swal.close();
+                $('#monto-pago').focus();
+          });
+      }else if( parseFloat(montoCliente) < parseFloat(mv) ){
+        swal({
+            title: "Atención con el vuelto",
+            text: "El pago del cliente debe ser mayor o igual al monto total de productos",
+            type: "warning",
+            closeOnConfirm: false
+        },
+          function(){
+              swal.close();
+              $('#monto-pago').focus();
+        });
       }else{
         // console.log(cartShopping);
           $.ajax({
@@ -177,7 +244,6 @@ $(document).ready(function(){
               },
               success: function(data){
                   actualIdVenta = data["idVenta"];
-
                   $('#modalPagar').modal('toggle');
                   //Generate Voucher HTML
                   generateHTMLVoucher(cartShopping, data['idVenta']);
@@ -230,8 +296,10 @@ $(document).ready(function(){
       var direccion = "Jr. Junin 1101"
       var sede = "Cajamarca";
       var dt = new Date();
-      var fecha = dt.getDate() + '' +  writeMonth() + '' + dt.getFullYear();
+      var fecha = dt.getDate() + '-' +  writeMonth() + '-' + dt.getFullYear();
       var hora = dt.getHours() + ":" + dt.getMinutes();
+      var montoCliente = $('#monto-pago').val();
+      var vuelto = $('#monto-vuelto').val();
 
       var string =   '<div class="row">' +
                         '<div class="col-md-12 col-xs-12 text-center">' +
@@ -275,9 +343,17 @@ $(document).ready(function(){
                             '<div class="col-md-8 col-xs-8 text-right">IGV: </div>' +
                             '<div class="col-md-4 col-xs-4 text-center" >S/ '+ igv +'</div>' +
                        '</div>' +
-                       '<div class="row">' +
+                       '<div class="row" style="font-weight: bold;">' +
                             '<div class="col-md-8 col-xs-8 text-right">TOTAL: </div>' +
                             '<div class="col-md-4 col-xs-4 text-center" >S/ ' + mv +'</div>' +
+                       '</div>' +
+                       '<div class="row">' +
+                            '<div class="col-md-8 col-xs-8 text-right">Paga con: </div>' +
+                            '<div class="col-md-4 col-xs-4 text-center" >S/ ' + round(montoCliente, 2) +'</div>' +
+                       '</div>' +
+                       '<div class="row">' +
+                            '<div class="col-md-8 col-xs-8 text-right">Vuelto: </div>' +
+                            '<div class="col-md-4 col-xs-4 text-center" >S/ ' + round(vuelto, 2) +'</div>' +
                        '</div>';
       $('#vouchercontent').html(string);
     }
@@ -317,9 +393,18 @@ $(document).ready(function(){
         $('#CartShoppingTable').empty();
         $('#CartShoppingTable').html(script);
 
+        if( actualIdVenta == -1 ){
+            actualIdVenta = $('#idVenta').text();
+        }
         actualIdVenta = parseFloat(actualIdVenta) + 1;
         $('#idVenta').text(actualIdVenta);
 
+        $('#monto-pago').val('');
+
+        $('#monto-vuelto').val('');
+
         addTotalVenta(montoDeVenta);
     }
+
+
 });
