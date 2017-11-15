@@ -23,17 +23,12 @@ class PersonalController extends Controller
 
     public function index()
     {
-        try {
-            $personals =  DB::table('personals')
-                ->join('users', 'personals.id', '=', 'users.id')
-                ->select('personals.*', 'users.email')
-                ->get();
+        // $personals =  DB::table('personals')
+        //                   ->get();
+        $users = DB::table('users')->get();
+        $cantPersonals = 1;
+        return view($this->path . '.index', compact('cantPersonals', 'users'));
 
-            $cantPersonals = Personal::get()->count();
-            return view($this->path . '.index', compact('personals', 'users', 'cantPersonals'));
-        } catch (Exception $e) {
-            alert()->error('Ha ocurrido un error: ' . $e->getMessage(), 'Error');
-        }
     }
 
     /**

@@ -15,9 +15,6 @@
                                         <thead>
                                         <tr>
                                             <th class="text-center">#</th>
-                                            <th class="text-center">Nombres</th>
-                                            <th class="text-center">Apellidos</th>
-                                            <th class="text-center">DNI</th>
                                             <th class="text-center">E-mail</th>
                                             <th></th>
                                             <th></th>
@@ -26,27 +23,22 @@
                                         </thead>
                                         <tbody>
                                         <?php $i = 0; ?>
-                                        @foreach( $personals as $personal )
+                                        @foreach( $users as $user )
                                             <tr>
-                                                <th scope="row" class="text-center">{{ $personal->id }}</th>
-                                                <td class="text-center">{{ $personal->nombres }}</td>
-                                                <td class="text-center">{{ $personal->apellidos }}</td>
-                                                <td class="text-center">{{ $personal->dni }}</td>
-                                                <td class="text-center">
-                                                    {{$personal->email}}
-                                                </td>
+                                                <th scope="row" class="text-center">{{ $user->id }}</th>
+                                                <td class="text-center">{{ $user->email }}</td>
                                                 <td class="text-center">
                                                     <button class="btn btn-xs btn-success"
-                                                            onclick="mostrarDetallePersonal('{{ json_encode($personal) }}')"
+                                                            onclick="mostrarDetallePersonal('{{ json_encode($user) }}')"
                                                             data-toggle="modal" data-target="#myModal">Detalle
                                                     </button>
                                                 </td>
                                                 <td class="text-center"><a
-                                                            href="{{ route('personals.edit', $personal->id) }}"
+                                                            href="{{ route('personals.edit', $user->id) }}"
                                                             class="btn btn-xs btn-warning">Editar</a>
                                                 </td>
                                                 <td class="text-center">
-                                                    <form action="{{ route('personals.destroy', $personal->id) }}"
+                                                    <form action="{{ route('personals.destroy', $user->id) }}"
                                                           method="post">
                                                         <input type="hidden" name="_method" value="DELETE">
                                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">

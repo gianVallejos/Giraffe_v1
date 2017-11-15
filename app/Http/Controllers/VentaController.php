@@ -18,7 +18,7 @@ class VentaController extends Controller
     {
         $this->middleware('auth');
     }
-    
+
     public function index()
     {
           // Get id Venta
@@ -52,6 +52,11 @@ class VentaController extends Controller
                   ->get();
 
         return view($this->path . '.caja', compact('data', 'idVenta'));
+    }
+
+    public function cuadrarCaja(){
+
+        return view($this->path . '.cuadrarcaja');
     }
 
     /**
