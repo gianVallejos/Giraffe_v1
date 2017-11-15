@@ -37,3 +37,7 @@ Route::get('api-v1/save-venta', 'WsGiraffeController@saveVenta')->name('saveVent
 //Personal
 Route::resource('personals', 'PersonalController');
 Route::get('personals', 'PersonalController@index')->name('personalindex');
+
+//Cliente
+Route::resource('clientes', 'ClienteController');
+Route::get('clientes', 'ClienteController@index')->name('clienteindex');

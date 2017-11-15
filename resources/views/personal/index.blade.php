@@ -5,7 +5,169 @@
     @if( $cantPersonals != 0 )
         <div class="container">
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-12 text-center">
+                    @if(Auth::user()->id == 1)
+                        <button class="btn btn-warning" type="button" data-toggle="collapse"
+                                data-target="#collapseNewClient"
+                                aria-expanded="false" aria-controls="collapseNewClient">
+                            <img src="http://localhost/Giraffe_v1/public/images/panel-icon.png" style="width: 10px;">
+                            <strong style="font-size: 12px;">Nuevo Personal</strong>
+                        </button>
+
+                        <div class="collapse" id="collapseNewClient">
+                            <div class="card card-body">
+                                <div class="panel panel-default">
+                                    <div class="panel-body" style="height: 280px;">
+                                        <div id="table-wrapper">
+                                            <div class="panel-body">
+
+                                                <form class="form-horizontal" action="/Giraffe_v1/public/personals"
+                                                      method="POST">
+                                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
+                                                    <div class="form-group">
+                                                        <label for="nombres"
+                                                               class="col-md-1 col-xs-1 control-label">Nombres</label>
+                                                        <div class="col-md-5 col-xs-5">
+                                                            <input id="nombres" type="text" class="form-control"
+                                                                   name="nombres"
+                                                                   value="{{ old('nombres')}}" placeholder="Nombres"
+                                                                   required
+                                                                   autofocus>
+
+                                                            @if ($errors->has('nombres'))
+                                                                <span class="help-block">
+                                      <strong>{{ $errors->first('nombres')}}</strong>
+                                  </span>
+                                                            @endif
+
+                                                        </div>
+
+                                                        <label for="apellidos"
+                                                               class="col-md-1 col-xs-1 control-label">Apellidos</label>
+                                                        <div class="col-md-5 col-xs-5">
+                                                            <input id="apellidos" type="text" class="form-control"
+                                                                   name="apellidos"
+                                                                   value="{{ old('apellidos')}}" placeholder="Apellidos"
+                                                                   required autofocus>
+
+                                                            @if ($errors->has('apellidos'))
+                                                                <span class="help-block">
+                                      <strong>{{ $errors->first('apellidos')}}</strong>
+                                  </span>
+                                                            @endif
+
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="form-group">
+
+                                                        <label for="dni"
+                                                               class="col-md-1 col-xs-1 control-label">DNI</label>
+                                                        <div class="col-md-2 col-xs-2">
+                                                            <input id="dni" type="text" class="form-control" name="dni"
+                                                                   value="{{ old('dni')}}"
+                                                                   placeholder="DNI" minlength="8" maxlength="8"
+                                                                   required
+                                                                   autofocus>
+
+                                                            @if ($errors->has('dni'))
+                                                                <span class="help-block">
+                                      <strong>{{ $errors->first('dni')}}</strong>
+                                  </span>
+                                                            @endif
+
+                                                        </div>
+
+                                                        <label for="fechanacimiento"
+                                                               class="col-md-1 col-xs-1 control-label">Nacimiento</label>
+                                                        <div class="col-md-3 col-xs-2">
+                                                            <input id="fechanacimiento" type="date" class="form-control"
+                                                                   name="fechanacimiento"
+                                                                   value="{{ old('fechanacimiento')}}" required
+                                                                   autofocus>
+
+                                                            @if ($errors->has('fechanacimiento'))
+                                                                <span class="help-block">
+                                    <strong>{{ $errors->first('fechanacimiento')}}</strong>
+                                </span>
+                                                            @endif
+
+                                                        </div>
+
+                                                        <label for="telefono"
+                                                               class="col-md-1 col-xs-1 control-label">Teléfono</label>
+                                                        <div class="col-md-2 col-xs-2">
+                                                            <input id="telefono" type="text" class="form-control"
+                                                                   name="telefono"
+                                                                   value="{{ old('telefono')}}" placeholder="Teléfono">
+
+                                                            @if ($errors->has('telefono'))
+                                                                <span class="help-block">
+                                      <strong>{{ $errors->first('telefono')}}</strong>
+                                  </span>
+                                                            @endif
+
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+
+                                                        <label for="genero"
+                                                               class="col-md-1 col-xs-1 control-label">Género</label>
+                                                        <div class="col-md-2 col-xs-2">
+                                                            <?php
+                                                            $genero = array('Masculino', 'Femenino');
+                                                            ?>
+                                                            <select name="genero" id="genero" class="form-control">
+                                                                <?php           foreach($genero as $gr){                          ?>
+                                                                <option value="{{ $gr }}"
+                                                                        @if(old('genero') == '{{ $gr }}')selected @endif>{{ $gr }}</option>
+                                                                <?php           }                                                 ?>
+                                                            </select>
+
+                                                        </div>
+
+                                                        <label for="direccion"
+                                                               class="col-md-1 col-xs-2 control-label">Dirección</label>
+                                                        <div class="col-md-6 col-xs-3">
+                                                            <input id="direccion" type="text" class="form-control"
+                                                                   name="direccion"
+                                                                   value="{{ old('direccion')}}" placeholder="Dirección"
+                                                                   required autofocus>
+
+                                                            @if ($errors->has('direccion'))
+                                                                <span class="help-block">
+                                      <strong>{{ $errors->first('direccion')}}</strong>
+                                  </span>
+                                                            @endif
+
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <div class="col-md-12 text-center" style="padding-top: 25px;">
+                                                            <button type="submit" class="btn-giraffe">
+                                                                Agregar
+                                                            </button>
+                                                            <button type="reset" class="btn-giraffe">
+                                                                Limpiar
+                                                            </button>
+                                                        </div>
+                                                    </div>
+
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr>
+                    @endif
                     <div class="panel panel-default">
                         <div class="panel-heading text-center title">PERSONAL</div>
                         <div class="panel-body">
@@ -45,15 +207,18 @@
                                                             href="{{ route('personals.edit', $personal->id) }}"
                                                             class="btn btn-xs btn-warning">Editar</a>
                                                 </td>
-                                                <td class="text-center">
-                                                    <form action="{{ route('personals.destroy', $personal->id) }}"
-                                                          method="post">
-                                                        <input type="hidden" name="_method" value="DELETE">
-                                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                                        <button type="submit" class="btn btn-xs btn-danger">Eliminar
-                                                        </button>
-                                                    </form>
-                                                </td>
+                                                @if(Auth::user()->id == 1)
+                                                    <td class="text-center">
+                                                        <form action="{{ route('personals.destroy', $personal->id) }}"
+                                                              method="post">
+                                                            <input type="hidden" name="_method" value="DELETE">
+                                                            <input type="hidden" name="_token"
+                                                                   value="{{ csrf_token() }}">
+                                                            <button type="submit" class="btn btn-xs btn-danger">Eliminar
+                                                            </button>
+                                                        </form>
+                                                    </td>
+                                                @endif
                                             </tr>
                                             <?php $i++; ?>
                                         @endforeach
