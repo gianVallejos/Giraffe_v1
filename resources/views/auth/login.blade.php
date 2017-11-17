@@ -40,24 +40,24 @@
                         </div>
 
                         <div class="form-group">
-                            <div class="col-lg-6 col-md-6 col-xs-6 col-md-offset-4 col-xs-offset-4">
+                            <div class="col-lg-8 col-md-8 col-xs-8 col-md-offset-2 col-xs-offset-2">
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Recuérdame
+                                        <input type="checkbox" name="remember" checked> Recuérdame
                                     </label>
                                 </div>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <div class="col-md-8 col-xs-8 col-md-offset-4 col-xs-offset-4">
+                            <div class="col-md-12 col-xs-12 text-center">
                                 <button type="submit" class="btn btn-warning">
                                     Ingresar
                                 </button>
 
-                                <a class="btn btn-link" href="{{ route('password.request') }}">
+                                <!-- <a class="btn btn-link" href="{{ route('password.request') }}">
                                     ¿Olvidé mi contraseña?
-                                </a>
+                                </a> -->
                             </div>
                         </div>
                     </form>

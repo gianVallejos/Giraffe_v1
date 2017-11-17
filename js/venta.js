@@ -162,7 +162,7 @@ $(document).ready(function(){
             $('#btn-pagar').focus();
         }else if( ($("element").data('bs.modal') || {}).isShown && number_event == 13 ){
             resetDataOfPages();
-            $('#modal').modal('toggle');            
+            $('#modal').modal('toggle');
         }else if( number_event == 13 ){
             $('#monto-pago').focus();
         }else if( number_event == 9 ){
@@ -232,15 +232,15 @@ $(document).ready(function(){
               swal.close();
               $('#monto-pago').focus();
         });
-      }else{
-        // console.log(cartShopping);
+      }else{        
           $.ajax({
               type: 'GET',
-              url: 'http://localhost/giraffe/public/api-v1/save-venta',
+              url: 'http://localhost/Giraffe_v1/api-v1/save-venta',
               dataType: 'json',
               contentType: "application/json; charset=utf-8",
               data: {
-                  cartShopping: cartShopping
+                  cartShopping: cartShopping,
+                  montoCliente: montoCliente
               },
               success: function(data){
                   actualIdVenta = data["idVenta"];

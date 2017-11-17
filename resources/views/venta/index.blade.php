@@ -6,8 +6,8 @@
       <div class="row">
         <div class="col-lg-8 col-lg-offset-2">
           <div class="btn-group btn-group-justified">
-            <a href="{{ route('ventaindex') }}" class="btn btn-md btn-default">Ventas</a>
-            <a href="#" class="btn btn-md btn-default">Gestión de Clientes</a>
+            <a href="{{ route('ventaindex') }}" class="btn btn-md btn-default">Nueva Venta</a>
+            <a href="{{ route('clienteindex') }}" class="btn btn-md btn-default">Gestión de Clientes</a>
             <a href="{{ route('cuadrarcajaventa') }}" class="btn btn-md btn-default">Cerrar Caja</a>
           </div>
         </div>
@@ -117,7 +117,7 @@
 
                       <div class="row" style="margin-top: 12px; margin-bottom: 14px;">
                         <div class="col-md-3 margin-null">
-                          <label for="monto-pago">Monto de Pago Cliente</label>
+                          <label for="monto-pago">Pago Cliente</label>
                           <input id="monto-pago" type="number" min="0" step=".1" class="form-control" placeholder="S/ 00.00">
                         </div>
                         <div class="col-md-3 margin-null">

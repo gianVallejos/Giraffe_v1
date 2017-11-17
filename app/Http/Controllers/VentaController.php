@@ -33,6 +33,7 @@ class VentaController extends Controller
           $data = DB::table('productos')
                       ->orderBy('id')
                       ->get();
+
           return view($this->path . '.index', compact('data', 'idVenta'));
     }
 
@@ -57,6 +58,10 @@ class VentaController extends Controller
     public function cuadrarcaja(){
 
         return view($this->path . '.cuadrarcaja');
+    }
+
+    public function listaVenta(){
+        return view($this->path . '.listaventa');
     }
 
     /**
