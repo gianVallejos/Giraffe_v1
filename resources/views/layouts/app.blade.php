@@ -83,6 +83,18 @@
                                   </li>
                                 </ul>
                             </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
+                                    Ventas<span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                  <li>
+                                      <a href="#">
+                                          Total de Ventas
+                                      </a>
+                                  </li>
+                                </ul>
+                            </li>
                           @endif
                       @endguest
                 </ul>
@@ -144,7 +156,7 @@
 <script src="{{ asset('js/venta.js?v=1.0.17') }}"></script>
 <script src="{{ asset('js/personal.js?v=1.0.1') }}"></script>
 <script src="{{ asset('js/cuadrecaja.js?v=1.0.7') }}"></script>
-<script src="{{ asset('js/detalle.js?v=1.0.1') }}"></script>
+<script src="{{ asset('js/detalle.js?v=1.0.3') }}"></script>
 <script src="{{ asset('sweetalert/sweetalert.min.js') }}"></script>
 
 @include('sweet::alert')

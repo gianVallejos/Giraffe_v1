@@ -40,6 +40,11 @@ Route::get('personals', 'PersonalController@index')->name('personalindex');
 Route::resource('clientes', 'ClienteController');
 Route::get('clientes', 'ClienteController@index')->name('clienteindex');
 
+//Ingreso
+Route::resource('ingresos', 'IngresoController');
+Route::get('ingresos', 'IngresoController@index')->name('ingresoindex');
+
 //Ws Routes
 Route::get('api-v1/save-venta', 'WsGiraffeController@saveVenta')->name('saveVenta');
 Route::get('api-v1/save-cuadrar-caja', 'WsGiraffeController@saveCuadrarCaja')->name('saveCuadrarCaja');
+Route::get('api-v1/get-detalle-venta/{idVenta}', 'WsGiraffeController@getDetalleVenta')->name('getdetalleVenta');

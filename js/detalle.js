@@ -1,5 +1,5 @@
 function mostrarDetallePersonal(php_data) {
-    console.log(JSON.parse(php_data));
+    // console.log(JSON.parse(php_data));
     data = JSON.parse(php_data);
     $('#email-txt').text(data["email"]);
     $('#nombres-txt').text(data["nombres"] + " " + data["apellidos"]);
@@ -11,7 +11,7 @@ function mostrarDetallePersonal(php_data) {
 }
 
 function mostrarDetalleCliente(php_data) {
-    console.log(JSON.parse(php_data));
+    // console.log(JSON.parse(php_data));
     data = JSON.parse(php_data);
     $('#nombres-txt').text(data["nombres"] + " " + data["apellidos"]);
     $('#dni-txt').text(data["dni"]);
