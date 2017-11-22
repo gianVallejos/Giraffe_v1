@@ -65,11 +65,14 @@ class VentaController extends Controller
         $idUser = Auth::user()->id;
         $ventas = DB::select('call getAllVentasNoCerradasByIdVendedor(' . $idUser . ')');
 
-        return view($this->path . '.listaventa', compact('ventas'));
+        $ventas_user = DB::select('call getAllVentasByUserId('. $idUser .')');
+
+        return view($this->path . '.listaventa', compact('ventas', 'ventas_user'));
     }
 
     public function listaTotalVenta(){
       $ventas = DB::select('call getAllVentas()');
+
 
       return view($this->path . '.listaventa', compact('ventas'));
     }

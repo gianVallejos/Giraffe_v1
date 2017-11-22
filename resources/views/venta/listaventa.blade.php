@@ -16,7 +16,7 @@
   <div class="row"  style="padding-top: 30px;">
     <div class="col-lg-8 col-lg-offset-2 col-md-12 col-xs-12 text-center">
         <div class="panel panel-default">
-            <div class="panel-heading text-center title"><b>LISTAS DE VENTAS</b></div>
+            <div class="panel-heading text-center title"><b>VENTAS SIN CERRAR</b></div>
             <div class="panel-body" style="padding-top: 45px; padding-bottom: 50px;">
 
               <div id="table-wrapper">
@@ -67,6 +67,63 @@
         </div>
     </div>
   </div>
+
+
+  <div class="row"  style="padding-top: 30px;">
+    <div class="col-lg-8 col-lg-offset-2 col-md-12 col-xs-12 text-center">
+        <div class="panel panel-default">
+            <div class="panel-heading text-center title"><b>VENTAS TOTALES</b></div>
+            <div class="panel-body" style="padding-top: 45px; padding-bottom: 50px;">
+
+              <div id="table-wrapper">
+                  <div id="table-scroll">
+                      <table class="table table-responsive table-hover" style="font-size: 16px;">
+                          <thead>
+                          <tr>
+                              <th class="text-center">#</th>
+                              <th class="text-center">Fecha</th>
+                              <th class="text-center">Cajero</th>
+                              <th class="text-center">Monto Venta</th>
+                              <th class="text-center">Pago Cliente</th>
+                              <th class="text-center">Vuelto</th>
+                              <th></th>
+                          </tr>
+                          </thead>
+                          <tbody>
+                            <?php $i = 1; $cnt = 0; ?>
+                            @foreach( $ventas_user as $venta )
+                                <tr>
+                                  <td class="text-center">{{ $i }}</td>
+                                  <td class="text-center">{{ $venta->fecha }}</td>
+                                  <td class="text-center">{{ $venta->cajero }}</td>
+                                  <td class="text-center">{{ $venta->monto }}</td>
+                                  <td class="text-center">{{ $venta->pago}}</td>
+                                  <td class="text-center">{{ $venta->pago - $venta->monto }}</td>
+                                  <td class="text-center">
+                                      <button class="btn btn-xs btn-success"
+                                              onclick="mostrarDetalleVenta('{{ json_encode($venta) }}')"
+                                              data-toggle="modal" data-target="#myModal">Detalle de Venta
+                                      </button>
+                                  </td>
+                                </tr>
+                                <?php $i++; $cnt += (float)$venta->monto; ?>
+                            @endforeach
+                          </tbody>
+                      </table>
+                  </div>
+              </div>
+
+              <div class="row text-left">
+                  <div class="col-md-12 col-xs-12 text-center" style="font-size: 20px; font-weight: bold; padding-top: 40px;">
+                    <b>Monto total actual </b> S/ {{ $cnt }}
+                  </div>
+              </div>
+
+            </div>
+        </div>
+    </div>
+  </div>
+
 </div>
 
 <div id="detalle-venta-modal" class="modal fade" role="dialog">
