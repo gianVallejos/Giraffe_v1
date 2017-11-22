@@ -40,22 +40,18 @@ class VentaController extends Controller
 
     public function orderDetail()
     {
-        //Ventas con Detalle
-        $details = DB::table('venta')
-            ->join('detalleventa', 'venta.id', 'detalleventa.idVenta')
-            ->join('users', 'venta.idVendedor', 'users.id')
-            ->join('productos', 'detalleventa.idProducto', 'productos.id')
-            ->select('detalleventa.id', 'detalleventa.idVenta', 'users.name', 'productos.nombre')
+        $personals = DB::table('users')
+            ->select('id', 'name')
             ->get();
 
-        $ventasOrdenadas = $details->groupBy('idVenta');
+        //Ventas con Detalle
+        $ventas = DB::select('call getAllVentas()');
 
-        return view($this->path . '.lista', compact('ventasOrdenadas'));
+        return view($this->path . '.lista', compact('ventas', 'personals'));
     }
 
     public function caja()
     {
-
         // Get id Venta
         $idVenta = DB::select('call getLastVenta()');
 

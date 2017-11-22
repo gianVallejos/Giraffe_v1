@@ -5,138 +5,135 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12 text-center">
-                    <button class="btn btn-warning" type="button" data-toggle="collapse"
-                            data-target="#collapseNewKardex"
-                            aria-expanded="false" aria-controls="collapseNewClient">
-                        <img src="http://localhost/Giraffe_v1/public/images/panel-icon.png" style="width: 10px;">
-                        <strong style="font-size: 12px;">Nuevo Kardex</strong>
-                    </button>
+                <button class="btn btn-warning" type="button" data-toggle="collapse"
+                        data-target="#collapseNewKardex"
+                        aria-expanded="false" aria-controls="collapseNewClient">
+                    <img src="http://localhost/Giraffe_v1/public/images/panel-icon.png" style="width: 10px;">
+                    <strong style="font-size: 12px;">Nuevo Kardex</strong>
+                </button>
 
-                    <div class="collapse" id="collapseNewKardex">
-                        <div class="card card-body">
-                            <div class="panel panel-default">
-                                <div class="panel-body" style="height: 280px;">
-                                    <div id="table-wrapper">
-                                        <div class="panel-body">
+                <div class="collapse" id="collapseNewKardex">
+                    <div class="card card-body">
+                        <div class="panel panel-default">
+                            <div class="panel-body" style="height: 280px;">
+                                <div id="table-wrapper">
+                                    <div class="panel-body">
 
-                                            <form class="form-horizontal" action="/Giraffe_v1/public/kardexs"
-                                                  method="POST">
-                                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                        <form class="form-horizontal" action="/Giraffe_v1/public/kardexs"
+                                              method="POST">
+                                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
-                                                <div class="form-group">
-                                                    <label for="concepto"
-                                                           class="col-md-1 col-xs-1 control-label">Concepto</label>
-                                                    <div class="col-md-2 col-xs-2">
-                                                        <?php
-                                                        $conceptos = array('Entrada', 'Salida');
-                                                        ?>
-                                                        <select name="concepto" id="concepto" class="form-control">
-                                                            <?php           foreach($conceptos as $concepto){                          ?>
-                                                            <option value="{{ $concepto }}"
-                                                                    @if(old('concepto') == '{{ $concepto }}')selected @endif>{{ $concepto }}</option>
-                                                            <?php           }                                                 ?>
-                                                        </select>
-
-                                                    </div>
-
-                                                    <label for="id"
-                                                           class="col-md-1 col-xs-1 control-label">Insumo</label>
-                                                    <div class="col-md-2 col-xs-2">
-
-                                                        <select name="id" id="id" class="form-control">
-                                                            @foreach($insumos as $insumo)
-                                                                <option value="{{ $insumo->id }}"
-                                                                        @if(old('id') == '{{ $insumo->nombre }}')selected @endif>{{ $insumo->nombre }}</option>
-                                                            @endforeach
-                                                        </select>
-
-                                                    </div>
-
-                                                    <a href="{{route('insumoindex')}}"
-                                                       class="btn btn-success btn-lg active" role="button"
-                                                       aria-pressed="true">
-                                                        <img src="http://localhost/Giraffe_v1/public/images/panel-icon.png"
-                                                             style="width: 10px;">
-                                                        Agregar Insumo</a>
+                                            <div class="form-group">
+                                                <label for="concepto"
+                                                       class="col-md-1 col-xs-1 control-label">Concepto</label>
+                                                <div class="col-md-2 col-xs-2">
+                                                    <?php
+                                                    $conceptos = array('Entrada', 'Salida');
+                                                    ?>
+                                                    <select name="concepto" id="concepto" class="form-control">
+                                                        <?php           foreach($conceptos as $concepto){                          ?>
+                                                        <option value="{{ $concepto }}"
+                                                                @if(old('concepto') == '{{ $concepto }}')selected @endif>{{ $concepto }}</option>
+                                                        <?php           }                                                 ?>
+                                                    </select>
                                                 </div>
 
-                                                <div class="form-group">
+                                                <label for="id"
+                                                       class="col-md-1 col-xs-1 control-label">Insumo</label>
+                                                <div class="col-md-2 col-xs-2">
 
-                                                    <label for="factura"
-                                                           class="col-md-1 col-xs-1 control-label">N° de Factura</label>
-                                                    <div class="col-md-3 col-xs-3">
-                                                        <input id="factura" type="text" class="form-control"
-                                                               name="factura"
-                                                               value="{{ old('factura')}}" placeholder="Factura" min="0"
-                                                               step="1" autofocus>
+                                                    <select name="id" id="id" class="form-control">
+                                                        @foreach($insumos as $insumo)
+                                                            <option value="{{ $insumo->id }}"
+                                                                    @if(old('id') == '{{ $insumo->nombre }}')selected @endif>{{ $insumo->nombre }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
 
-                                                        @if ($errors->has('factura'))
-                                                            <span class="help-block">
+                                                <a href="{{route('insumoindex')}}"
+                                                   class="btn btn-success btn-lg active" role="button"
+                                                   aria-pressed="true">
+                                                    <img src="http://localhost/Giraffe_v1/public/images/panel-icon.png"
+                                                         style="width: 10px;">
+                                                    Agregar Insumo</a>
+                                            </div>
+
+                                            <div class="form-group">
+
+                                                <label for="factura"
+                                                       class="col-md-1 col-xs-1 control-label">N° de Factura</label>
+                                                <div class="col-md-3 col-xs-3">
+                                                    <input id="factura" type="text" class="form-control"
+                                                           name="factura"
+                                                           value="{{ old('factura')}}" placeholder="Factura" min="0"
+                                                           step="1" autofocus>
+
+                                                    @if ($errors->has('factura'))
+                                                        <span class="help-block">
                                       <strong>{{ $errors->first('factura')}}</strong>
                                   </span>
-                                                        @endif
+                                                    @endif
 
-                                                    </div>
+                                                </div>
 
-                                                    <label for="cantidad"
-                                                           class="col-md-1 col-xs-1 control-label">Cantidad</label>
-                                                    <div class="col-md-3 col-xs-3">
-                                                        <input id="cantidad" type="number" class="form-control"
-                                                               name="cantidad"
-                                                               value="{{ old('cantidad')}}" placeholder="Cantidad"
-                                                               min="0"
-                                                               step="1" required
-                                                               autofocus>
+                                                <label for="cantidad"
+                                                       class="col-md-1 col-xs-1 control-label">Cantidad</label>
+                                                <div class="col-md-3 col-xs-3">
+                                                    <input id="cantidad" type="number" class="form-control"
+                                                           name="cantidad"
+                                                           value="{{ old('cantidad')}}" placeholder="Cantidad"
+                                                           min="0"
+                                                           step="1" required
+                                                           autofocus>
 
-                                                        @if ($errors->has('cantidad'))
-                                                            <span class="help-block">
+                                                    @if ($errors->has('cantidad'))
+                                                        <span class="help-block">
                                       <strong>{{ $errors->first('cantidad')}}</strong>
                                   </span>
-                                                        @endif
+                                                    @endif
+                                                </div>
 
-                                                    </div>
+                                                <label for="preciounitario"
+                                                       class="col-md-1 col-xs-1 control-label">Precio
+                                                    Unitario</label>
+                                                <div class="col-md-3 col-xs-3">
+                                                    <input id="preciounitario" type="number" class="form-control"
+                                                           name="preciounitario"
+                                                           value="{{ old('preciounitario')}}"
+                                                           placeholder="Precio Unitario"
+                                                           min="0"
+                                                           step=".1" required
+                                                           autofocus>
 
-                                                    <label for="preciounitario"
-                                                           class="col-md-1 col-xs-1 control-label">Precio
-                                                        Unitario</label>
-                                                    <div class="col-md-3 col-xs-3">
-                                                        <input id="preciounitario" type="number" class="form-control"
-                                                               name="preciounitario"
-                                                               value="{{ old('preciounitario')}}"
-                                                               placeholder="Precio Unitario"
-                                                               min="0"
-                                                               step=".1" required
-                                                               autofocus>
-
-                                                        @if ($errors->has('preciounitario'))
-                                                            <span class="help-block">
+                                                    @if ($errors->has('preciounitario'))
+                                                        <span class="help-block">
                                       <strong>{{ $errors->first('preciounitario')}}</strong>
                                   </span>
-                                                        @endif
-
-                                                    </div>
+                                                    @endif
 
                                                 </div>
 
-                                                <div class="form-group">
-                                                    <div class="col-md-12 text-center" style="padding-top: 25px;">
-                                                        <button type="submit" class="btn-giraffe">
-                                                            Agregar
-                                                        </button>
-                                                        <button type="reset" class="btn-giraffe">
-                                                            Limpiar
-                                                        </button>
-                                                    </div>
-                                                </div>
+                                            </div>
 
-                                            </form>
-                                        </div>
+                                            <div class="form-group">
+                                                <div class="col-md-12 text-center" style="padding-top: 25px;">
+                                                    <button type="submit" class="btn-giraffe">
+                                                        Agregar
+                                                    </button>
+                                                    <button type="reset" class="btn-giraffe">
+                                                        Limpiar
+                                                    </button>
+                                                </div>
+                                            </div>
+
+                                        </form>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <hr>
+                </div>
+                <hr>
 
                 @if( $cantKardexs != 0 )
                     <div class="panel panel-default">

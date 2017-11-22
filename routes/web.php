@@ -34,6 +34,7 @@ Route::get('venta/lista', ['uses' => 'VentaController@orderDetail'])->name('list
 
 //Ws Routes
 Route::get('api-v1/save-venta', 'WsGiraffeController@saveVenta')->name('saveVenta');
+Route::get('api-v1/get-detalle-venta/{idVenta}', 'WsGiraffeController@getDetalleVenta')->name('getdetalleVenta');
 
 //Personal
 Route::resource('personals', 'PersonalController');

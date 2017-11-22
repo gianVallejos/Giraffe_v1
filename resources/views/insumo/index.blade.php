@@ -5,101 +5,101 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12 text-center">
-                    <button class="btn btn-warning" type="button" data-toggle="collapse"
-                            data-target="#collapseNewClient"
-                            aria-expanded="false" aria-controls="collapseNewClient">
-                        <img src="http://localhost/Giraffe_v1/public/images/panel-icon.png" style="width: 10px;">
-                        <strong style="font-size: 12px;">Nuevo Insumo</strong>
-                    </button>
+                <button class="btn btn-warning" type="button" data-toggle="collapse"
+                        data-target="#collapseNewClient"
+                        aria-expanded="false" aria-controls="collapseNewClient">
+                    <img src="http://localhost/Giraffe_v1/public/images/panel-icon.png" style="width: 10px;">
+                    <strong style="font-size: 12px;">Nuevo Insumo</strong>
+                </button>
 
-                    <div class="collapse" id="collapseNewClient">
-                        <div class="card card-body">
-                            <div class="panel panel-default">
-                                <div class="panel-body" style="height: 280px;">
-                                    <div id="table-wrapper">
-                                        <div class="panel-body">
+                <div class="collapse" id="collapseNewClient">
+                    <div class="card card-body">
+                        <div class="panel panel-default">
+                            <div class="panel-body" style="height: 280px;">
+                                <div id="table-wrapper">
+                                    <div class="panel-body">
 
-                                            <form class="form-horizontal" action="/Giraffe_v1/public/insumos"
-                                                  method="POST">
-                                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                        <form class="form-horizontal" action="/Giraffe_v1/public/insumos"
+                                              method="POST">
+                                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
-                                                <div class="form-group">
-                                                    <label for="nombre"
-                                                           class="col-md-1 col-xs-1 control-label">Nombre</label>
-                                                    <div class="col-md-3 col-xs-3">
-                                                        <input id="nombre" type="text" class="form-control"
-                                                               name="nombre"
-                                                               value="{{ old('nombre')}}" placeholder="Nombre"
-                                                               required
-                                                               autofocus>
+                                            <div class="form-group">
+                                                <label for="nombre"
+                                                       class="col-md-1 col-xs-1 control-label">Nombre</label>
+                                                <div class="col-md-3 col-xs-3">
+                                                    <input id="nombre" type="text" class="form-control"
+                                                           name="nombre"
+                                                           value="{{ old('nombre')}}" placeholder="Nombre"
+                                                           required
+                                                           autofocus>
 
-                                                        @if ($errors->has('nombre'))
-                                                            <span class="help-block">
+                                                    @if ($errors->has('nombre'))
+                                                        <span class="help-block">
                                       <strong>{{ $errors->first('nombre')}}</strong>
                                   </span>
-                                                        @endif
+                                                    @endif
 
-                                                    </div>
+                                                </div>
 
-                                                    <label for="descripcion"
-                                                           class="col-md-1 col-xs-1 control-label">Descripción</label>
-                                                    <div class="col-md-4 col-xs-4">
-                                                        <input id="descripcion" type="text" class="form-control"
-                                                               name="descripcion"
-                                                               value="{{ old('descripcion')}}" placeholder="Descripción"
-                                                               autofocus>
+                                                <label for="descripcion"
+                                                       class="col-md-1 col-xs-1 control-label">Descripción</label>
+                                                <div class="col-md-4 col-xs-4">
+                                                    <input id="descripcion" type="text" class="form-control"
+                                                           name="descripcion"
+                                                           value="{{ old('descripcion')}}" placeholder="Descripción"
+                                                           autofocus>
 
-                                                        @if ($errors->has('descripcion'))
-                                                            <span class="help-block">
+                                                    @if ($errors->has('descripcion'))
+                                                        <span class="help-block">
                                       <strong>{{ $errors->first('descripcion')}}</strong>
                                   </span>
-                                                        @endif
-
-                                                    </div>
+                                                    @endif
 
                                                 </div>
 
-                                                <div class="form-group">
+                                            </div>
 
-                                                    <label for="precio"
-                                                           class="col-md-1 col-xs-1 control-label">Precio
-                                                        Unitario</label>
-                                                    <div class="col-md-3 col-xs-3">
-                                                        <input id="precio" type="number" class="form-control"
-                                                               name="precio"
-                                                               value="{{ old('precio')}}"
-                                                               placeholder="Precio"
-                                                               min="0"
-                                                               step=".1" autofocus>
+                                            <div class="form-group">
 
-                                                        @if ($errors->has('precio'))
-                                                            <span class="help-block">
+                                                <label for="precio"
+                                                       class="col-md-1 col-xs-1 control-label">Precio
+                                                    Unitario</label>
+                                                <div class="col-md-3 col-xs-3">
+                                                    <input id="precio" type="number" class="form-control"
+                                                           name="precio"
+                                                           value="{{ old('precio')}}"
+                                                           placeholder="Precio"
+                                                           min="0"
+                                                           step=".1" autofocus>
+
+                                                    @if ($errors->has('precio'))
+                                                        <span class="help-block">
                                       <strong>{{ $errors->first('precio')}}</strong>
                                   </span>
-                                                        @endif
-                                                    </div>
-
+                                                    @endif
                                                 </div>
 
-                                                <div class="form-group">
-                                                    <div class="col-md-12 text-center" style="padding-top: 25px;">
-                                                        <button type="submit" class="btn-giraffe">
-                                                            Agregar
-                                                        </button>
-                                                        <button type="reset" class="btn-giraffe">
-                                                            Limpiar
-                                                        </button>
-                                                    </div>
-                                                </div>
+                                            </div>
 
-                                            </form>
-                                        </div>
+                                            <div class="form-group">
+                                                <div class="col-md-12 text-center" style="padding-top: 25px;">
+                                                    <button type="submit" class="btn-giraffe">
+                                                        Agregar
+                                                    </button>
+                                                    <button type="reset" class="btn-giraffe">
+                                                        Limpiar
+                                                    </button>
+                                                </div>
+                                            </div>
+
+                                        </form>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <hr>
+                </div>
+                <hr>
 
                 <div class="panel panel-default">
                     <div class="panel-heading text-center title">INSUMO</div>

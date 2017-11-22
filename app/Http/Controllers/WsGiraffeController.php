@@ -42,4 +42,10 @@ class WsGiraffeController extends Controller
       }
     }
 
+    public function getDetalleVenta($idVenta){
+        $sql = 'call getDetalleVentasByIdVenta('. $idVenta .')';
+        $res = DB::select($sql);
+        print(json_encode($res));
+    }
+
 }
