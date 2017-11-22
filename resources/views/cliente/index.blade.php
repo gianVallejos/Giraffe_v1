@@ -5,7 +5,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12 text-center">
-                @if(Auth::user()->id == 1)
+                @if(Auth::user()->id == 2)
                     <button class="btn btn-warning" type="button" data-toggle="collapse"
                             data-target="#collapseNewClient"
                             aria-expanded="false" aria-controls="collapseNewClient">

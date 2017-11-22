@@ -4,158 +4,152 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-md-12">
 
-                <!-- <div class="alert alert-success text-center">
-                    Nuevo paciente agregado correctamente.
-                </div> -->
+            <div class="panel panel-default">
+                <div class="panel-heading text-center title">MODIFICAR CLIENTE</div>
+                <div class="panel-body">
 
-                <div class="panel panel-default">
-                    <div class="panel-heading text-center title">MODIFICAR CLIENTE</div>
-                    <div class="panel-body">
+                    <form class="form-horizontal" action="/Giraffe_v1/public/clientes/{{ $cliente->id }}"
+                          method="POST">
+                        <input type="hidden" name="_method" value="PUT">
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
-                        <form class="form-horizontal" action="/Giraffe_v1/public/clientes/{{ $cliente->id }}"
-                              method="POST">
-                            <input type="hidden" name="_method" value="PUT">
-                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        <div class="form-group">
+                            <label for="nombres" class="col-md-1 col-xs-1 control-label">Nombres</label>
+                            <div class="col-md-5 col-xs-5">
+                                <input id="nombres" type="text" class="form-control" name="nombres"
+                                       value="{{ $cliente->nombres }}" placeholder="Nombres" required autofocus>
 
-
-                            <div class="form-group">
-                                <label for="nombres" class="col-md-1 col-xs-1 control-label">Nombres</label>
-                                <div class="col-md-5 col-xs-5">
-                                    <input id="nombres" type="text" class="form-control" name="nombres"
-                                           value="{{ $cliente->nombres }}" placeholder="Nombres" required autofocus>
-
-                                    @if ($errors->has('nombres'))
-                                        <span class="help-block">
+                                @if ($errors->has('nombres'))
+                                    <span class="help-block">
                                       <strong>{{ $errors->first('nombres')}}</strong>
                                   </span>
-                                    @endif
+                                @endif
 
-                                </div>
+                            </div>
 
-                                <label for="apellidos" class="col-md-1 col-xs-1 control-label">Apellidos</label>
-                                <div class="col-md-5 col-xs-5">
-                                    <input id="apellidos" type="text" class="form-control" name="apellidos"
-                                           value="{{ $cliente->apellidos }}" placeholder="Apellidos" required
-                                           autofocus>
+                            <label for="apellidos" class="col-md-1 col-xs-1 control-label">Apellidos</label>
+                            <div class="col-md-5 col-xs-5">
+                                <input id="apellidos" type="text" class="form-control" name="apellidos"
+                                       value="{{ $cliente->apellidos }}" placeholder="Apellidos" required
+                                       autofocus>
 
-                                    @if ($errors->has('apellidos'))
-                                        <span class="help-block">
+                                @if ($errors->has('apellidos'))
+                                    <span class="help-block">
                                       <strong>{{ $errors->first('apellidos')}}</strong>
                                   </span>
-                                    @endif
-
-                                </div>
+                                @endif
 
                             </div>
 
-                            <div class="form-group">
+                        </div>
 
-                                <label for="dni" class="col-md-1 col-xs-1 control-label">DNI</label>
-                                <div class="col-md-2 col-xs-2">
-                                    <input id="dni" type="text" class="form-control" name="dni"
-                                           value="{{ $cliente->dni }}" placeholder="DNI" minlength="8" maxlength="8"
-                                           required autofocus>
+                        <div class="form-group">
 
-                                    @if ($errors->has('dni'))
-                                        <span class="help-block">
+                            <label for="dni" class="col-md-1 col-xs-1 control-label">DNI</label>
+                            <div class="col-md-2 col-xs-2">
+                                <input id="dni" type="text" class="form-control" name="dni"
+                                       value="{{ $cliente->dni }}" placeholder="DNI" minlength="8" maxlength="8"
+                                       required autofocus>
+
+                                @if ($errors->has('dni'))
+                                    <span class="help-block">
                                       <strong>{{ $errors->first('dni')}}</strong>
                                   </span>
-                                    @endif
+                                @endif
 
-                                </div>
+                            </div>
 
-                                <label for="email" class="col-md-1 col-xs-1 control-label">Email</label>
-                                <div class="col-md-4 col-xs-3">
+                            <label for="email" class="col-md-1 col-xs-1 control-label">Email</label>
+                            <div class="col-md-4 col-xs-3">
 
-                                            <input id="email" type="text" class="form-control" name="email"
-                                                   value="{{ $cliente->email }}" placeholder="E-mail">
+                                <input id="email" type="text" class="form-control" name="email"
+                                       value="{{ $cliente->email }}" placeholder="E-mail">
 
-                                    @if ($errors->has('email'))
-                                        <span class="help-block">
+                                @if ($errors->has('email'))
+                                    <span class="help-block">
                                       <strong>{{ $errors->first('email')}}</strong>
                                   </span>
-                                    @endif
+                                @endif
 
-                                </div>
+                            </div>
 
-                                <label for="direccion" class="col-md-1 col-xs-2 control-label">Dirección</label>
-                                <div class="col-md-3 col-xs-3">
-                                    <input id="direccion" type="text" class="form-control" name="direccion"
-                                           value="{{ $cliente->direccion }}" placeholder="Dirección" required
-                                           autofocus>
+                            <label for="direccion" class="col-md-1 col-xs-2 control-label">Dirección</label>
+                            <div class="col-md-3 col-xs-3">
+                                <input id="direccion" type="text" class="form-control" name="direccion"
+                                       value="{{ $cliente->direccion }}" placeholder="Dirección" required
+                                       autofocus>
 
-                                    @if ($errors->has('direccion'))
-                                        <span class="help-block">
+                                @if ($errors->has('direccion'))
+                                    <span class="help-block">
                                       <strong>{{ $errors->first('direccion')}}</strong>
                                   </span>
-                                    @endif
-
-                                </div>
+                                @endif
 
                             </div>
 
-                            <div class="form-group">
+                        </div>
 
-                                <label for="genero" class="col-md-1 col-xs-1 control-label">Género</label>
-                                <div class="col-md-3 col-xs-2">
-                                    <?php
-                                    $genero = array('Masculino', 'Femenino');
-                                    ?>
-                                    <select name="genero" id="genero" class="form-control">
-                                        <?php           foreach($genero as $gr){                          ?>
-                                        <option value="{{ $gr }}" {{ $cliente->genero == $gr ? 'selected="selected"' : '' }} > {{ $gr }}</option>
-                                        <?php           }                                                 ?>
-                                    </select>
+                        <div class="form-group">
 
-                                </div>
+                            <label for="genero" class="col-md-1 col-xs-1 control-label">Género</label>
+                            <div class="col-md-3 col-xs-2">
+                                <?php
+                                $genero = array('Masculino', 'Femenino');
+                                ?>
+                                <select name="genero" id="genero" class="form-control">
+                                    <?php           foreach($genero as $gr){                          ?>
+                                    <option value="{{ $gr }}" {{ $cliente->genero == $gr ? 'selected="selected"' : '' }} > {{ $gr }}</option>
+                                    <?php           }                                                 ?>
+                                </select>
 
-                                <label for="fechanacimiento" class="col-md-1 col-xs-1 control-label">Nacimiento</label>
-                                <div class="col-md-2 col-xs-2">
-                                    <input id="fechanacimiento" type="date" class="form-control" name="fechanacimiento"
-                                           value="{{ $cliente->fechanacimiento }}" required autofocus>
+                            </div>
 
-                                    @if ($errors->has('fechanacimiento'))
-                                        <span class="help-block">
+                            <label for="fechanacimiento" class="col-md-1 col-xs-1 control-label">Nacimiento</label>
+                            <div class="col-md-2 col-xs-2">
+                                <input id="fechanacimiento" type="date" class="form-control" name="fechanacimiento"
+                                       value="{{ $cliente->fechanacimiento }}" required autofocus>
+
+                                @if ($errors->has('fechanacimiento'))
+                                    <span class="help-block">
                                     <strong>{{ $errors->first('fechanacimiento')}}</strong>
                                 </span>
-                                    @endif
+                                @endif
 
-                                </div>
+                            </div>
 
-                                <label for="celular" class="col-md-1 col-xs-1 control-label">Celular</label>
-                                <div class="col-md-2 col-xs-2">
-                                    <input id="telefono" type="text" class="form-control" name="telefono"
-                                           value="{{ $cliente->telefono }}" placeholder="Número de Celular">
+                            <label for="celular" class="col-md-1 col-xs-1 control-label">Celular</label>
+                            <div class="col-md-2 col-xs-2">
+                                <input id="telefono" type="text" class="form-control" name="telefono"
+                                       value="{{ $cliente->telefono }}" placeholder="Número de Celular">
 
-                                    @if ($errors->has('telefono'))
-                                        <span class="help-block">
+                                @if ($errors->has('telefono'))
+                                    <span class="help-block">
                                       <strong>{{ $errors->first('telefono')}}</strong>
                                   </span>
-                                    @endif
+                                @endif
 
-                                </div>
                             </div>
+                        </div>
 
-                            <div class="form-group">
-                                <div class="col-md-12 text-center">
-                                    <button type="submit" class="btn-giraffe">
-                                        <span>Editar</span>
+                        <div class="form-group">
+                            <div class="col-md-12 text-center">
+                                <button type="submit" class="btn-giraffe">
+                                    <span>Editar</span>
+                                </button>
+                                <a href="{{ route('clienteindex') }}">
+                                    <button type="button" class="btn-giraffe">
+                                        <span>Atrás</span>
                                     </button>
-                                    <a href="{{ route('clienteindex') }}">
-                                        <button type="button" class="btn-giraffe">
-                                            <span>Atrás</span>
-                                        </button>
-                                    </a>
-                                </div>
+                                </a>
                             </div>
+                        </div>
 
-                        </form>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 
 @endsection

@@ -28,21 +28,21 @@
 
                           <label for="" class="col-md-5 col-md-offset-1 col-xs-6">Subtotal:</label>
                           <div id="subtotal" class="col-md-5 col-xs-6 text-center">
-                            S/ 0
+                            S/ 0.00
                           </div>
                         </div>
                         <div class="row">
 
                         <label for="" class="col-md-5 col-md-offset-1 col-xs-6">IGV:</label>
                         <div id="igv" class="col-md-5 col-xs-6 text-center">
-                          S/ 0
+                          S/ 0.00
                         </div>
                       </div>
 
                       <div class="row" style="font-weight: bold; font-size: 18px;">
                         <label for="" class="col-md-5 col-md-offset-1 col-xs-6">Total:</label>
                         <div id="total" class="col-md-5 col-xs-6 text-center">
-                          S/ 0
+                          S/ 0.00
                         </div>
                       </div>
 

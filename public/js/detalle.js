@@ -22,3 +22,15 @@ function mostrarDetalleCliente(php_data) {
     $('#telefono-txt').text(data["telefono"]);
     $('#celular-txt').text(data["celular"]);
 }
+
+function mostrarDetalleKardex(php_data) {
+    console.log(JSON.parse(php_data));
+    data = JSON.parse(php_data);
+    $('#nombre-txt').text(data["nombre"]);
+    $('#concepto-txt').text(data["concepto"]);
+    $('#fecha-txt').text(data["fecha"]);
+    $('#factura-txt').text(data["factura"]);
+    $('#cantidad-txt').text(data["cantidad"]);
+    $('#preciounitario-txt').text(data["preciounitario"]);
+    $('#cantidadexistencia-txt').text(data["cantidadexistencia"]);
+}

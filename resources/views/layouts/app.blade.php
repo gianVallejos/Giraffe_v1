@@ -16,7 +16,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('sweetalert/sweetalert.css') }}" rel="stylesheet">
     <link href="{{ asset('css/giraffe.css?v=1.0.22') }}" rel="stylesheet">
-    <!-- <link rel="stylesheet" href="{{ asset('css/modal-fullscreen.css?v=1.0.12') }}"> -->
+<!-- <link rel="stylesheet" href="{{ asset('css/modal-fullscreen.css?v=1.0.12') }}"> -->
 
     <link rel="shortcut icon" href="{{{ asset('images/favicon.ico') }}}">
 
@@ -49,7 +49,8 @@
                         @else
                             &nbsp;
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                   aria-expanded="false" aria-haspopup="true">
                                     Personas<span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu">
@@ -76,7 +77,7 @@
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Authentication Links -->
-                        @guest
+                    @guest
                         <li><a href="{{ route('login') }}">Ingresar</a></li>
                     <!-- <li><a href="{{ route('register') }}">Registro</a></li> -->
                         @else
@@ -135,7 +136,7 @@
 <script src="{{ asset('js/venta.js?v=1.0.16') }}"></script>
 <script src="{{ asset('js/personal.js?v=1.0.1') }}"></script>
 <script src="{{ asset('js/cuadrecaja.js?v=1.0.1') }}"></script>
-<script src="{{ asset('js/detalle.js?v=1.0.1') }}"></script>
+<script src="{{ asset('js/detalle.js?v=1.0.2') }}"></script>
 <script src="{{ asset('sweetalert/sweetalert.min.js') }}"></script>
 
 @include('sweet::alert')
