@@ -6,8 +6,9 @@
       <div class="row">
         <div class="col-lg-8 col-lg-offset-2">
           <div class="btn-group btn-group-justified">
-            <a href="{{ route('ventaindex') }}" class="btn btn-md btn-default">Ventas</a>
-            <a href="#" class="btn btn-md btn-default">Gestión de Clientes</a>
+            <a href="{{ route('ventaindex') }}" class="btn btn-md btn-default">Nueva Venta</a>
+            <a href="{{ route('listaventaindex') }}" class="btn btn-md btn-default">Lista de Ventas</a>
+            <a href="{{ route('clienteindex') }}" class="btn btn-md btn-default">Gestión de Clientes</a>
             <a href="{{ route('cuadrarcajaventa') }}" class="btn btn-md btn-default">Cerrar Caja</a>
           </div>
         </div>
@@ -18,16 +19,14 @@
                 <div class="panel-heading text-center title"><b>CERRAR CAJA</b></div>
                 <div class="panel-body" style="padding-top: 45px; padding-bottom: 50px;">
 
-                  <form class="form-horizontal" id="formCuadreCaja" method="post">
+                  <form class="form-horizontal" id="formCuadreCaja">
 
                     <div class="form-group">
                       <label for="montoInicial" class="col-md-2 col-md-offset-2 control-label">Monto de inicio de día: </label>
                       <div class="col-md-6">
-                        <input id="montoInicial" name="montoInicial" class="form-control" type="number" min="0" step=".1" placeholder="Monto Inicial">
+                        <input id="montoInicial" name="montoInicial" class="form-control" value="0" type="number" min="0" step=".1" placeholder="Monto Inicial">
                       </div>
                     </div>
-
-
 
                   <div class="col-md-10 col-xs-12 col-md-offset-1" style="padding-top: 25px; padding-bottom: 20px;">
                     <div id="table-wrapper">
@@ -53,7 +52,7 @@
                                            0.10
                                        </td>
                                        <td class="text-center">
-                                           <input class="form-control form-control-monto text-center" type="number" min="0" name="1" step="1" id="cnt-1" value="0">
+                                           <input class="form-control form-control-monto text-center" type="number" min="0" name="m1" step="1" id="cnt-1" value="0">
                                        </td>
                                        <td class="text-center">
                                            <input class=" text-center form-control form-control-monto" type="number" min="0" name="monto-1" id="monto-1" value="0" disabled>
@@ -69,7 +68,7 @@
                                            0.20
                                        </td>
                                        <td class="text-center col-md-2 col-xs-2">
-                                           <input class="form-control form-control-monto text-center" type="number" min="0" name="2" step="1" id="cnt-2" value="0">
+                                           <input class="form-control form-control-monto text-center" type="number" min="0" name="m2" step="1" id="cnt-2" value="0">
                                        </td>
                                        <td class="text-center col-md-2 col-xs-2">
                                            <input class=" text-center form-control form-control-monto" type="number" min="0" name="monto-2" id="monto-2" value="0" disabled>
@@ -85,7 +84,7 @@
                                            0.50
                                        </td>
                                        <td class="text-center col-md-2 col-xs-2">
-                                           <input class="form-control form-control-monto text-center" type="number" min="0" name="3" step="1" id="cnt-3" value="0">
+                                           <input class="form-control form-control-monto text-center" type="number" min="0" name="m3" step="1" id="cnt-3" value="0">
                                        </td>
                                        <td class="text-center col-md-2 col-xs-2">
                                            <input class=" text-center form-control form-control-monto" type="number" min="0" name="monto-3" id="monto-3" value="0" disabled>
@@ -101,7 +100,7 @@
                                            1.00
                                        </td>
                                        <td class="text-center col-md-2 col-xs-2">
-                                           <input class="form-control form-control-monto text-center" type="number" min="0" name="4" step="1" id="cnt-4" value="0">
+                                           <input class="form-control form-control-monto text-center" type="number" min="0" name="m4" step="1" id="cnt-4" value="0">
                                        </td>
                                        <td class="text-center col-md-2 col-xs-2">
                                            <input class=" text-center form-control form-control-monto" type="number" min="0" name="monto-4" id="monto-4" value="0" disabled>
@@ -117,7 +116,7 @@
                                            2.00
                                        </td>
                                        <td class="text-center col-md-2 col-xs-2">
-                                           <input class="form-control form-control-monto text-center" type="number" min="0" name="5" step="1" id="cnt-5" value="0">
+                                           <input class="form-control form-control-monto text-center" type="number" min="0" name="m5" step="1" id="cnt-5" value="0">
                                        </td>
                                        <td class="text-center col-md-2 col-xs-2">
                                            <input class=" text-center form-control form-control-monto" type="number" min="0" name="monto-5" id="monto-5" value="0" disabled>
@@ -133,7 +132,7 @@
                                            5.00
                                        </td>
                                        <td class="text-center col-md-2 col-xs-2">
-                                           <input class="form-control form-control-monto text-center" type="number" min="0" name="6" step="1" id="cnt-6" value="0">
+                                           <input class="form-control form-control-monto text-center" type="number" min="0" name="m6" step="1" id="cnt-6" value="0">
                                        </td>
                                        <td class="text-center col-md-2 col-xs-2">
                                            <input class=" text-center form-control form-control-monto" type="number" min="0" name="monto-6" id="monto-6" value="0" disabled>
@@ -149,7 +148,7 @@
                                            10.00
                                        </td>
                                        <td class="text-center col-md-2 col-xs-2">
-                                           <input class="form-control form-control-monto text-center" type="number" min="0" name="7" step="1" id="cnt-7" value="0">
+                                           <input class="form-control form-control-monto text-center" type="number" min="0" name="m7" step="1" id="cnt-7" value="0">
                                        </td>
                                        <td class="text-center col-md-2 col-xs-2">
                                            <input class=" text-center form-control form-control-monto" type="number" min="0" name="monto-7" id="monto-7" value="0" disabled>
@@ -165,7 +164,7 @@
                                            20.00
                                        </td>
                                        <td class="text-center col-md-2 col-xs-2">
-                                           <input class="form-control form-control-monto text-center" type="number" min="0" name="8" step="1" id="cnt-8" value="0">
+                                           <input class="form-control form-control-monto text-center" type="number" min="0" name="m8" step="1" id="cnt-8" value="0">
                                        </td>
                                        <td class="text-center col-md-2 col-xs-2">
                                            <input class=" text-center form-control form-control-monto" type="number" min="0" name="monto-8" id="monto-8" value="0" disabled>
@@ -181,7 +180,7 @@
                                            50.00
                                        </td>
                                        <td class="text-center col-md-2 col-xs-2">
-                                           <input class="form-control form-control-monto text-center" type="number" min="0" name="9" step="1" id="cnt-9" value="0">
+                                           <input class="form-control form-control-monto text-center" type="number" min="0" name="m9" step="1" id="cnt-9" value="0">
                                        </td>
                                        <td class="text-center col-md-2 col-xs-2">
                                            <input class="form-control text-center form-control-monto" type="number" min="0" name="monto-9" id="monto-9" value="0" disabled>
@@ -197,7 +196,7 @@
                                            100.00
                                        </td>
                                        <td class="text-center col-md-2 col-xs-2">
-                                           <input class="form-control form-control-monto text-center" type="number" min="0" name="10" step="1" id="cnt-10" value="0">
+                                           <input class="form-control form-control-monto text-center" type="number" min="0" name="m10" step="1" id="cnt-10" value="0">
                                        </td>
                                        <td class="text-center col-md-2 col-xs-2">
                                            <input class="form-control text-center form-control-monto" type="number" min="0" name="monto-10" id="monto-10" value="0" disabled>
@@ -213,7 +212,7 @@
                                            200.00
                                        </td>
                                        <td class="text-center col-md-2 col-xs-2">
-                                           <input class="form-control form-control-monto text-center" type="number" min="0" name="11" step="1" id="cnt-11" value="0">
+                                           <input class="form-control form-control-monto text-center" type="number" min="0" name="m11" step="1" id="cnt-11" value="0">
                                        </td>
                                        <td class="text-center col-md-2 col-xs-2">
                                            <input class="form-control text-center form-control-monto" type="number" min="0" name="monto-11" id="monto-11" value="0" disabled>
@@ -227,21 +226,21 @@
                                   <td></td>
                                   <td></td>
                                   <td class="text-right">Monto (S/):</td>
-                                  <td id="monto-general">0</td>
+                                  <td id="monto-general">0.00</td>
                                 </tr>
                                 <tr>
                                   <td style="border-top: none;"></td>
                                   <td style="border-top: none;"></td>
                                   <td style="border-top: none;"></td>
                                   <td style="border-top: none;" class="text-right">Inicio Día (S/):</td>
-                                  <td style="border-top: none;"></td>
+                                  <td id="monto-inicio-dia" style="border-top: none;">0.00</td>
                                 </tr>
                                 <tr>
                                   <td style="border-top: none;"></td>
                                   <td style="border-top: none;"></td>
                                   <td style="border-top: none;"></td>
-                                  <td style="border-top: none;" class="text-right">Total (S/):</td>
-                                  <td style="border-top: none;">0</td>
+                                  <td class="text-right">Total (S/):</td>
+                                  <td id="monto-total">0.00</td>
                                 </tr>
                               </tfoot>
                             </table>

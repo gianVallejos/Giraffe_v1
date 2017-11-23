@@ -2,8 +2,21 @@
 
 @section('content')
 
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
+
+          <div class="col-lg-8 col-lg-offset-2">
+            <div class="btn-group btn-group-justified">
+              <a href="{{ route('ventaindex') }}" class="btn btn-md btn-default">Nueva Venta</a>
+              <a href="{{ route('listaventaindex') }}" class="btn btn-md btn-default">Lista de Ventas</a>
+              <a href="{{ route('clienteindex') }}" class="btn btn-md btn-default">Gestión de Clientes</a>
+              <a href="{{ route('cuadrarcajaventa') }}" class="btn btn-md btn-default">Cerrar Caja</a>
+            </div>
+          </div>
+        </div>
+        <div class="row" style="padding-top: 30px;">
+            <div class="col-lg-8 col-lg-offset-2 text-center">
+
 
             <div class="panel panel-default">
                 <div class="panel-heading text-center title">MODIFICAR CLIENTE</div>

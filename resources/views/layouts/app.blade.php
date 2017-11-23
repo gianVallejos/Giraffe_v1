@@ -47,31 +47,58 @@
                 <ul class="nav navbar-nav">
                     @guest
                         @else
+                          @if(Auth::user()->rol_usuario != 3)
                             &nbsp;
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                                   aria-expanded="false" aria-haspopup="true">
-                                    Personas<span class="caret"></span>
+
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
+                                    Opciones<span class="caret"></span>
+
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li>
-                                        <a href="{{ route('personalindex') }}">
-                                            Colaboradores
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ route('personalindex') }}">
-                                            Registro de Usuarios
+                                        <a href="{{ route('register') }}">
+                                          Registro de Usuarios
                                         </a>
                                     </li>
                                     <li>
                                         <a href="{{ route('clienteindex') }}">
-                                            Cliente
+                                          Clientes
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                          Lista de Ventas
                                         </a>
                                     </li>
                                 </ul>
                             </li>
-                            @endguest
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
+                                    Productos<span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                  <li>
+                                      <a href="{{ route('productoindex') }}">
+                                          Gestión de Productos
+                                      </a>
+                                  </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
+                                    Ventas<span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                  <li>
+                                      <a href="#">
+                                          Total de Ventas
+                                      </a>
+                                  </li>
+                                </ul>
+                            </li>
+                          @endif
+                      @endguest
                 </ul>
 
                 <!-- Right Side Of Navbar -->
@@ -88,11 +115,6 @@
                                 </a>
 
                                 <ul class="dropdown-menu">
-                                    <li>
-                                        <a href="{{ route('productoindex') }}">
-                                            Productos
-                                        </a>
-                                    </li>
                                     <li>
                                         <a href="{{ route('logout') }}"
                                            onclick="event.preventDefault();
@@ -133,10 +155,10 @@
 <script src="{{ asset('js/app.js') }}"></script>
 <!-- <script src="{{ asset('js/fullscreen-modal.js?v=1.0.2') }}"></script> -->
 <script src="{{ asset('js/printThis.js?v=1.0.1') }}"></script>
-<script src="{{ asset('js/venta.js?v=1.0.16') }}"></script>
+<script src="{{ asset('js/venta.js?v=1.0.17') }}"></script>
 <script src="{{ asset('js/personal.js?v=1.0.1') }}"></script>
-<script src="{{ asset('js/cuadrecaja.js?v=1.0.1') }}"></script>
-<script src="{{ asset('js/detalle.js?v=1.0.2') }}"></script>
+<script src="{{ asset('js/cuadrecaja.js?v=1.0.7') }}"></script>
+<script src="{{ asset('js/detalle.js?v=1.0.3') }}"></script>
 <script src="{{ asset('sweetalert/sweetalert.min.js') }}"></script>
 
 @include('sweet::alert')

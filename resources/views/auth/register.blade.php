@@ -11,6 +11,20 @@
                     <form class="form-horizontal" method="POST" action="{{ route('register') }}">
                         {{ csrf_field() }}
 
+                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                            <label for="name" class="col-md-2 col-md-offset-2 col-xs-2 col-xs-offset-2 control-label">Nombres</label>
+
+                            <div class="col-md-6 col-xs-6">
+                                <input id="name" type="name" class="form-control" name="name" value="{{ old('name') }}" required>
+
+                                @if ($errors->has('name'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('name') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                             <label for="email" class="col-md-2 col-md-offset-2 col-xs-2 col-xs-offset-2 control-label">E-Mail</label>
 
@@ -44,6 +58,18 @@
 
                             <div class="col-md-6 col-xs-6">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="rol-user" class="col-md-2 col-md-offset-2 col-xs-2 col-xs-offset-2 control-label">Rol</label>
+
+                            <div class="col-md-6 col-xs-6">
+                                <select id="rol_usuario" class="form-control" name="rol_usuario">
+                                  <option value="1">Master</option>
+                                  <option value="2">Admin</option>
+                                  <option value="3" selected>Cajero</option>
+                                </select>
                             </div>
                         </div>
 

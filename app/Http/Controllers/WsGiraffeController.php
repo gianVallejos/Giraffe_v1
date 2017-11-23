@@ -19,7 +19,7 @@ class WsGiraffeController extends Controller
 
     public function saveVenta(Request $request){
           $cartShopping = $request->input('cartShopping');
-          print_r($cartShopping); die();
+          $montoCliente = $request->input('montoCliente');
       try{
           // Get id Venta
           $idVenta = DB::select('call getLastVenta()');
@@ -30,10 +30,12 @@ class WsGiraffeController extends Controller
               $idVenta = 1;
           }
 
-          $evg = DB::select('call agregarVentaGeneral(1, 1)');
+          $currentUser = app('Illuminate\Contracts\Auth\Guard')->user();
+          $user_id = $currentUser["id"];
+          $evg = DB::select('call agregarVentaGeneral(1, '. $user_id .', '. $montoCliente .')');
 
           foreach( $cartShopping as $cs ){
-              $evd = DB::select('call agregarVentaDetalle('. $cs['0'] .', '. $idVenta .')');
+              $evd = DB::select('call agregarVentaDetalle('. $cs['4']. ', '. $cs['0'] .', '. $idVenta .')');
           }
 
           return response()->json(['idVenta' => $idVenta]);
@@ -42,7 +44,39 @@ class WsGiraffeController extends Controller
       }
     }
 
+    public function saveCuadrarCaja(Request $request){
+      $data = $request->input('data');
+      $monto_inicial = $data[0]['value'];
+
+      $m1 = $data[1]['value'];
+      $m2 = $data[2]['value'];
+      $m3 = $data[3]['value'];
+      $m4 = $data[4]['value'];
+      $m5 = $data[5]['value'];
+      $m6 = $data[6]['value'];
+      $m7 = $data[7]['value'];
+      $m8 = $data[8]['value'];
+      $m9 = $data[9]['value'];
+      $m10 = $data[10]['value'];
+      $m11 = $data[11]['value'];
+      $monto_general = $request->input('monto_general');
+
+      $currentUser = app('Illuminate\Contracts\Auth\Guard')->user();
+      $user_id = $currentUser["id"];
+
+
+      try{
+          $sql = 'call agregarCierreDeCaja('. $m1 .', '. $m2 .', '. $m3 .', '. $m4 .', ' . $m5 .', '. $m6 .', '. $m7 .', '. $m8 .', '. $m9 .', ' . $m10 . ', ' .
+                                              $m11 .','. $monto_general . ', ' . $monto_inicial . ', ' . $user_id .')';
+          $res = DB::select($sql);
+          print(json_encode($res));
+      }catch(Exception $e){
+          print('error');
+      }
+    }
+
     public function getDetalleVenta($idVenta){
+
         $sql = 'call getDetalleVentasByIdVenta('. $idVenta .')';
         $res = DB::select($sql);
         print(json_encode($res));

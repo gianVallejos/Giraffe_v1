@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Venta;
+use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -72,6 +73,22 @@ class VentaController extends Controller
     {
 
         return view($this->path . '.cuadrarcaja');
+    }
+
+    public function listaVenta(){
+        $idUser = Auth::user()->id;
+        $ventas = DB::select('call getAllVentasNoCerradasByIdVendedor(' . $idUser . ')');
+
+        $ventas_user = DB::select('call getAllVentasByUserId('. $idUser .')');
+
+        return view($this->path . '.listaventa', compact('ventas', 'ventas_user'));
+    }
+
+    public function listaTotalVenta(){
+      $ventas = DB::select('call getAllVentas()');
+
+
+      return view($this->path . '.listaventa', compact('ventas'));
     }
 
     /**

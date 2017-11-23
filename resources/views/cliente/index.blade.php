@@ -2,19 +2,22 @@
 
 @section('content')
 
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
-            <div class="col-md-12 text-center">
-                @if(Auth::user()->id == 2)
-                    <button class="btn btn-warning" type="button" data-toggle="collapse"
-                            data-target="#collapseNewClient"
-                            aria-expanded="false" aria-controls="collapseNewClient">
-                        <img src="http://localhost/Giraffe_v1/public/images/panel-icon.png" style="width: 10px;">
-                        <strong style="font-size: 12px;">Nuevo Cliente</strong>
-                    </button>
 
-                    <div class="collapse" id="collapseNewClient">
-                        <div class="card card-body">
+          <div class="col-lg-8 col-lg-offset-2">
+            <div class="btn-group btn-group-justified">
+              <a href="{{ route('ventaindex') }}" class="btn btn-md btn-default">Nueva Venta</a>
+              <a href="{{ route('listaventaindex') }}" class="btn btn-md btn-default">Lista de Ventas</a>
+              <a href="{{ route('clienteindex') }}" class="btn btn-md btn-default">Gestión de Clientes</a>
+              <a href="{{ route('cuadrarcajaventa') }}" class="btn btn-md btn-default">Cerrar Caja</a>
+            </div>
+          </div>
+        </div>
+        <div class="row" style="padding-top: 30px;">
+            <div class="col-lg-8 col-lg-offset-2 text-center">
+
+
                             <div class="panel panel-default">
                                 <div class="panel-body" style="height: 280px;">
                                     <div id="table-wrapper">
@@ -187,12 +190,10 @@
                                             </form>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
+
                         </div>
                     </div>
                     <hr>
-                @endif
 
                 @if( $cantClientes != 0 )
                     <div class="panel panel-default">
@@ -218,7 +219,7 @@
                                         <?php $i = 0; ?>
                                         @foreach( $clientes as $cliente )
                                             <tr>
-                                                <th scope="row" class="text-center">{{ $cliente->id }}</th>
+                                                <th scope="row" class="text-center">{{ $i + 1 }}</th>
                                                 <td class="text-center">{{ $cliente->nombres }}</td>
                                                 <td class="text-center">{{ $cliente->apellidos }}</td>
                                                 <td class="text-center">{{ $cliente->dni }}</td>
@@ -235,7 +236,7 @@
                                                             class="btn btn-xs btn-warning">Editar</a>
                                                 </td>
 
-                                                @if(Auth::user()->id == 1)
+                                                @if(Auth::user()->rol_usuario != 3)
                                                     <td class="text-center">
                                                         <form action="{{ route('clientes.destroy', $cliente->id) }}"
                                                               method="post">
