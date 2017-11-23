@@ -4,6 +4,7 @@
 
     <div class="container-fluid">
         <div class="row">
+
           <div class="col-lg-8 col-lg-offset-2">
             <div class="btn-group btn-group-justified">
               <a href="{{ route('ventaindex') }}" class="btn btn-md btn-default">Nueva Venta</a>
@@ -15,6 +16,7 @@
         </div>
         <div class="row" style="padding-top: 30px;">
             <div class="col-lg-8 col-lg-offset-2 text-center">
+
 
                             <div class="panel panel-default">
                                 <div class="panel-body" style="height: 280px;">

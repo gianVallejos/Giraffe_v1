@@ -16,7 +16,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('sweetalert/sweetalert.css') }}" rel="stylesheet">
     <link href="{{ asset('css/giraffe.css?v=1.0.22') }}" rel="stylesheet">
-    <!-- <link rel="stylesheet" href="{{ asset('css/modal-fullscreen.css?v=1.0.12') }}"> -->
+<!-- <link rel="stylesheet" href="{{ asset('css/modal-fullscreen.css?v=1.0.12') }}"> -->
 
     <link rel="shortcut icon" href="{{{ asset('images/favicon.ico') }}}">
 
@@ -50,8 +50,10 @@
                           @if(Auth::user()->rol_usuario != 3)
                             &nbsp;
                             <li class="dropdown">
+
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
                                     Opciones<span class="caret"></span>
+
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li>
@@ -102,7 +104,7 @@
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Authentication Links -->
-                        @guest
+                    @guest
                         <li><a href="{{ route('login') }}">Ingresar</a></li>
                     <!-- <li><a href="{{ route('register') }}">Registro</a></li> -->
                         @else

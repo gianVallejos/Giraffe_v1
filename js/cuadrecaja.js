@@ -1,5 +1,6 @@
 $(document).ready(function(){
   var monedas = [-1, 0.10, 0.20, 0.5, 1, 2, 5, 10, 20, 50, 100, 200];
+
   var monto_general;
   var monto_inicio_dia;
   var monto_total;
@@ -106,6 +107,7 @@ $(document).ready(function(){
   }
 
   function calculateMontoGeneral(monto_actual){
+
       var monto_general = 0;
       for( var ind = 1; ind <= 11; ind++ ){
           monto_general += parseFloat( $('#monto-' + ind).val() );
@@ -130,7 +132,5 @@ $(document).ready(function(){
       monto_total = round(parseFloat(monto_general) + parseFloat(monto_inicio_dia), 2);
       $('#monto-total').text( monto_total );
   }
-
-
 
 });

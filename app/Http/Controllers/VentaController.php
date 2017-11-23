@@ -15,6 +15,7 @@ class VentaController extends Controller
      * @return \Illuminate\Http\Response
      */
     private $path = 'venta';
+
     public function __construct()
     {
         $this->middleware('auth');
@@ -22,41 +23,54 @@ class VentaController extends Controller
 
     public function index()
     {
-          // Get id Venta
-          $idVenta = DB::select('call getLastVenta()');
+        // Get id Venta
+        $idVenta = DB::select('call getLastVenta()');
 
-          if( !empty($idVenta) ){
+        if (!empty($idVenta)) {
             $idVenta = $idVenta[0]->NRO_PRESUPUESTO + 1;
-          }else{
+        } else {
             $idVenta = 1;
-          }
+        }
 
-          $data = DB::table('productos')
-                      ->orderBy('id')
-                      ->get();
+        $data = DB::table('productos')
+            ->orderBy('id')
+            ->get();
 
-          return view($this->path . '.index', compact('data', 'idVenta'));
+        return view($this->path . '.index', compact('data', 'idVenta'));
     }
 
-    public function caja(){
+    public function orderDetail()
+    {
+        $personals = DB::table('users')
+            ->select('id', 'name')
+            ->get();
 
-      // Get id Venta
-      $idVenta = DB::select('call getLastVenta()');
+        //Ventas con Detalle
+        $ventas = DB::select('call getAllVentas()');
 
-      if( !empty($idVenta) ){
-        $idVenta = $idVenta[0]->NRO_PRESUPUESTO + 1;
-      }else{
-        $idVenta = 1;
-      }
+        return view($this->path . '.lista', compact('ventas', 'personals'));
+    }
 
-      $data = DB::table('productos')
-                  ->orderBy('id')
-                  ->get();
+    public function caja()
+    {
+        // Get id Venta
+        $idVenta = DB::select('call getLastVenta()');
+
+        if (!empty($idVenta)) {
+            $idVenta = $idVenta[0]->NRO_PRESUPUESTO + 1;
+        } else {
+            $idVenta = 1;
+        }
+
+        $data = DB::table('productos')
+            ->orderBy('id')
+            ->get();
 
         return view($this->path . '.caja', compact('data', 'idVenta'));
     }
 
-    public function cuadrarcaja(){
+    public function cuadrarcaja()
+    {
 
         return view($this->path . '.cuadrarcaja');
     }
@@ -90,7 +104,7 @@ class VentaController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -101,7 +115,7 @@ class VentaController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Venta  $venta
+     * @param  \App\Venta $venta
      * @return \Illuminate\Http\Response
      */
     public function show(Venta $venta)
@@ -112,7 +126,7 @@ class VentaController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Venta  $venta
+     * @param  \App\Venta $venta
      * @return \Illuminate\Http\Response
      */
     public function edit(Venta $venta)
@@ -123,8 +137,8 @@ class VentaController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Venta  $venta
+     * @param  \Illuminate\Http\Request $request
+     * @param  \App\Venta $venta
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Venta $venta)
@@ -135,7 +149,7 @@ class VentaController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Venta  $venta
+     * @param  \App\Venta $venta
      * @return \Illuminate\Http\Response
      */
     public function destroy(Venta $venta)

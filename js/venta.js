@@ -162,7 +162,9 @@ $(document).ready(function(){
             $('#btn-pagar').focus();
         }else if( ($("element").data('bs.modal') || {}).isShown && number_event == 13 ){
             resetDataOfPages();
+
             $('#modal').modal('toggle');
+
         }else if( number_event == 13 ){
             $('#monto-pago').focus();
         }else if( number_event == 9 ){
@@ -232,6 +234,7 @@ $(document).ready(function(){
               swal.close();
               $('#monto-pago').focus();
         });
+
       }else{        
           $.ajax({
               type: 'GET',
