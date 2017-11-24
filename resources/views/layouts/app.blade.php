@@ -95,6 +95,11 @@
                                           Total de Ventas
                                       </a>
                                   </li>
+                                    <li>
+                                      <a href="{{route('orderDetail')}}">
+                                          Reporte de Ventas
+                                      </a>
+                                  </li>
                                 </ul>
                             </li>
                           @endif
@@ -156,6 +161,7 @@
 <!-- <script src="{{ asset('js/fullscreen-modal.js?v=1.0.2') }}"></script> -->
 <script src="{{ asset('js/printThis.js?v=1.0.1') }}"></script>
 <script src="{{ asset('js/venta.js?v=1.0.17') }}"></script>
+<script src="{{ asset('js/lista-venta.js?v=1.0.4') }}"></script>
 <script src="{{ asset('js/personal.js?v=1.0.1') }}"></script>
 <script src="{{ asset('js/cuadrecaja.js?v=1.0.7') }}"></script>
 <script src="{{ asset('js/detalle.js?v=1.0.3') }}"></script>

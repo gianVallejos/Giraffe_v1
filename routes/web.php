@@ -32,6 +32,7 @@ Route::get('ventas', 'VentaController@index')->name('ventaindex');
 Route::get('venta/cuadrarcaja', ['uses' => 'VentaController@cuadrarCaja'])->name('cuadrarcajaventa');
 
 Route::get('venta/listaventa', ['uses' => 'VentaController@listaVenta'])->name('listaventaindex');
+Route::get('venta/reporte', ['uses' => 'VentaController@orderDetail'])->name('orderDetail');
 
 //Personal
 Route::resource('personals', 'PersonalController');
@@ -49,6 +50,8 @@ Route::get('ingresos', 'IngresoController@index')->name('ingresoindex');
 Route::get('api-v1/save-venta', 'WsGiraffeController@saveVenta')->name('saveVenta');
 Route::get('api-v1/save-cuadrar-caja', 'WsGiraffeController@saveCuadrarCaja')->name('saveCuadrarCaja');
 Route::get('api-v1/get-detalle-venta/{idVenta}', 'WsGiraffeController@getDetalleVenta')->name('getdetalleVenta');
+Route::get('api-v1/get-buscarReporteVenta/{fechaInicial}/{fechaFinal}/{personalId}', 'WsGiraffeController@getReporteVenta')->name('getReporteVenta');
+Route::get('api-v1/get-buscarReporteVentaList/{idVenta}', 'WsGiraffeController@getDetalleVentaList')->name('getDetalleVentaList');
 
 //Kardex
 Route::resource('kardexs', 'KardexController');
@@ -57,4 +60,3 @@ Route::get('kardexs', 'KardexController@index')->name('kardexindex');
 //Insumo
 Route::resource('insumos', 'InsumoController');
 Route::get('insumos', 'InsumoController@index')->name('insumoindex');
-

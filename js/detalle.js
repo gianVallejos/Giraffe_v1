@@ -39,33 +39,79 @@ function mostrarDetalleKardex(php_data) {
     $('#cantidadexistencia-txt').text(data["cantidadexistencia"]);
 }
 
-function mostrarDetalleVenta(php_data) {
-    var venta = JSON.parse(php_data);
-    var idVenta = venta["id"];
-    console.log(idVenta);
+// function mostrarDetalleVenta(php_data) {
+//     var venta = JSON.parse(php_data);
+//     var idVenta = venta["id"];
+//     console.log(idVenta);
+//
+//     $('#nro-venta').text("00-0" + venta["id"]);
+//     $('#fecha-txt').text(venta["fecha"]);
+//     $('#cajero-txt').text(venta["cajero"]);
+//     $('#monto-venta-txt').text('S/ ' + venta["monto"]);
+//     if (venta["pago"] != null) {
+//         $('#monto-cliente-txt').text('S/ ' + venta["pago"]);
+//     }
+//
+//     $.ajax({
+//         type: 'GET',
+//         url: '/Giraffe_v1/api-v1/get-detalle-venta/' + idVenta,
+//         data: {},
+//         success: function (data) {
+//             var detalle_venta = JSON.parse(data);
+//             showInTable(detalle_venta, venta["monto"]);
+//         },
+//         error: function () {
+//             alertMessage('Error', 'Error al obtener detalles de venta', 'error');
+//         }
+//     });
+//
+//     $('#detalle-venta-modal').modal('toggle');
+// }
 
-    $('#nro-venta').text("00-0" + venta["id"]);
-    $('#fecha-txt').text(venta["fecha"]);
-    $('#cajero-txt').text(venta["cajero"]);
-    $('#monto-venta-txt').text('S/ ' + venta["monto"]);
-    if (venta["pago"] != null) {
-        $('#monto-cliente-txt').text('S/ ' + venta["pago"]);
-    }
+function mostrarDetalleVentaList(id) {
+    console.log(id);
 
     $.ajax({
         type: 'GET',
-        url: '/Giraffe_v1/api-v1/get-detalle-venta/' + idVenta,
+        url: '/Giraffe_v1/api-v1/get-buscarReporteVentaList/' + id,
         data: {},
         success: function (data) {
             var detalle_venta = JSON.parse(data);
-            showInTable(detalle_venta, venta["monto"]);
+            $('#nro-venta').text("00-0" + detalle_venta[0]["idVenta"]);
+            $('#fecha-txt').text(detalle_venta[0]["fecha"]);
+            $('#cajero-txt').text(detalle_venta[0]["cajero"]);
+            $('#monto-venta-txt').text('S/ ' + detalle_venta[0]["monto"]);
+            if (detalle_venta[0]["pago"] != null) {
+              $('#monto-cliente-txt').text('S/ ' + detalle_venta[0]["pago"]);
+            }
+            console.log(detalle_venta);
+
+            tabalaDetalle(detalle_venta[0]["idVenta"], detalle_venta[0]["monto"]);
         },
         error: function () {
-            alertMessage('Error', 'Error al obtener detalles de venta', 'error');
+            swal('Error', 'Error al obtener detalles de venta', 'error');
         }
     });
 
     $('#detalle-venta-modal').modal('toggle');
+}
+
+function tabalaDetalle(id, monto) {
+    $.ajax({
+        type: 'GET',
+        url: '/Giraffe_v1/api-v1/get-detalle-venta/' + id,
+        data: {},
+        success: function (data) {
+            var detalle_ventaList = JSON.parse(data);
+            showInTable(detalle_ventaList, monto);
+
+            console.log(detalle_ventaList);
+            console.log(monto);
+        },
+        error: function () {
+            swal('Error', 'Error al obtener detalles de venta', 'error');
+        }
+    });
 }
 
 function showInTable(detalle_venta, venta_monto) {

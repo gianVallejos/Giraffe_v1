@@ -11,67 +11,76 @@
                     <div class="panel-body">
 
                         <div class="row" style="margin-top: 12px; margin-bottom: 14px;">
-                            <label class="text-center" style="font-size: 20px;">Buscar</label>
-                            <div class="form-group">
-                                <label for="fechainicial"
-                                       class="col-md-1 col-xs-1 control-label">Fecha</label>
-                                <div class="col-md-2 col-xs-2">
-                                    <input id="fechainicial" type="date" class="form-control"
-                                           name="fechainicial"
-                                           value="{{ old('fechainicial')}}" required
-                                           autofocus>
+                            <div class="col-md-12">
+                                <p>BUSCAR:</p>
+                            </div>
+                            <form id="form-buscarVentas" class="form-horizontal">
+                                <div class="col-md-12">
+                                    <div class="form-group form-horizontal">
+                                        <div class="col-md-1 col-md-offset-1 col-xs-1 control-label">
+                                            <label for="fechainicial">Inicial</label></div>
+                                        <div class="col-md-2 col-xs-2">
+                                            <input id="fechainicial" type="date" class="form-control"
+                                                   name="fechainicial"
+                                                   value="{{ old('fechainicial')}}"
+                                                   autofocus>
 
-                                    @if ($errors->has('fechainicial'))
-                                        <span class="help-block">
+                                            @if ($errors->has('fechainicial'))
+                                                <span class="help-block">
                                     <strong>{{ $errors->first('fechainicial')}}</strong>
                                 </span>
-                                    @endif
-                                </div>
-                                <label for="fechafinal"
-                                       class="col-md-1 col-xs-1 control-label">Fecha</label>
-                                <div class="col-md-2 col-xs-2">
-                                    <input id="fechafinal" type="date" class="form-control"
-                                           name="fechafinal"
-                                           value="{{ old('fechafinal')}}" required
-                                           autofocus>
+                                            @endif
+                                        </div>
 
-                                    @if ($errors->has('fechafinal'))
-                                        <span class="help-block">
+                                        <div class="col-md-1 col-xs-1 control-label">
+                                            <label for="fechafinal">Final</label></div>
+                                        <div class="col-md-2 col-xs-2">
+                                            <input id="fechafinal" type="date" class="form-control"
+                                                   name="fechafinal"
+                                                   value="{{ old('fechafinal')}}"
+                                                   autofocus>
+
+                                            @if ($errors->has('fechafinal'))
+                                                <span class="help-block">
                                     <strong>{{ $errors->first('fechafinal')}}</strong>
                                 </span>
-                                    @endif
-                                </div>
-                                <label for="personal"
-                                       class="col-md-1 col-xs-1 control-label">Personal</label>
-                                <div class="col-md-2 col-xs-2">
-                                    <select name="personal" id="personal" class="form-control">
-                                        <?php           foreach($personals as $personal){                          ?>
-                                        <option value="{{ $personal->id }}"
-                                                @if(old('personal') == '{{ personal }}')selected @endif>{{ $personal->name }}</option>
-                                        <?php           }                                                 ?>
-                                    </select>
-                                </div>
+                                            @endif
+                                        </div>
 
-                                <a href="#"
-                                   class="btn btn-success btn-lg active" role="button"
-                                   aria-pressed="true">
-                                    <img src="https://image.flaticon.com/icons/svg/265/265699.svg"
-                                         style="width: 10px;">
-                                    Buscar</a>
-                            </div>
+                                        <div class="col-md-1 col-xs-1 control-label">
+                                            <label for="personal">Personal</label>
+                                        </div>
+                                        <div class="col-md-2 col-xs-2">
+                                            <select name="personal" id="personalId" class="form-control">
+                                                <?php           foreach($personals as $personal){                          ?>
+                                                <option value="{{ $personal->id }}"
+                                                        @if(old('personal') == '{{ personal }}')selected @endif>{{ $personal->name }}</option>
+                                                <?php           }                                                 ?>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-md-1 col-xs-4">
+                                            <button type="submit" name="button"
+                                                    class="btn-giraffe">
+                                                Buscar
+                                            </button>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </form>
                         </div>
 
                         <div id="table-wrapper">
                             <div id="table-scroll" style="height: 100vh;">
 
-                                <table class="table table-responsive table-hover">
+                                <table class="table table-responsive table-hover" id="tablaVentas">
                                     <thead>
                                     <tr>
                                         <th class="text-center">#</th>
                                         <th class="text-center">Fecha</th>
                                         <th class="text-center">Cajero</th>
                                         <th class="text-center">Monto</th>
-                                        <th></th>
                                         <th></th>
                                     </tr>
                                     </thead>
@@ -83,11 +92,9 @@
                                             <td class="text-center">{{ $venta->fecha }}</td>
                                             <td class="text-center">{{ $venta->cajero }}</td>
                                             <td class="text-center">{{ $venta->monto }}</td>
-                                            <td class="text-center">{{ $venta->pago}}</td>
-                                            <td class="text-center">{{ $venta->pago - $venta->monto }}</td>
                                             <td class="text-center">
                                                 <button class="btn btn-xs btn-success"
-                                                        onclick="mostrarDetalleVenta('{{ json_encode($venta) }}')"
+                                                        onclick="mostrarDetalleVentaList('{{ $venta->id }}')"
                                                         data-toggle="modal" data-target="#myModal">Detalle de Venta
                                                 </button>
                                             </td>
@@ -170,7 +177,3 @@
     </div>
 
 @endsection
-<!-- <script type="text/javascript">
-
-
-</script> -->

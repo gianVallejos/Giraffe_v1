@@ -48,7 +48,7 @@ class VentaController extends Controller
         //Ventas con Detalle
         $ventas = DB::select('call getAllVentas()');
 
-        return view($this->path . '.lista', compact('ventas', 'personals'));
+        return view($this->path . '.reporte', compact('ventas', 'personals'));
     }
 
     public function caja()
