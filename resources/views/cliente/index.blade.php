@@ -19,6 +19,7 @@
 
 
                             <div class="panel panel-default">
+                                <div class="panel-heading text-center title">AGREGAR CLIENTE</div>
                                 <div class="panel-body" style="height: 280px;">
                                     <div id="table-wrapper">
                                         <div class="panel-body">

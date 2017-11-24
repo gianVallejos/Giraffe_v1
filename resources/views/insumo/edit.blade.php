@@ -6,17 +6,17 @@
         <div class="row">
 
             <div class="panel panel-default">
-                <div class="panel-heading text-center title">MODIFICAR INSUMO</div>
+                <div class="panel-heading text-center title"><b>MODIFICAR INSUMO</b></div>
                 <div class="panel-body">
 
-                    <form class="form-horizontal" action="/Giraffe_v1/public/insumos/{{ $insumo->id }}"
+                    <form class="form-horizontal" action="/Giraffe_v1/insumos/{{ $insumo->id }}"
                           method="POST">
                         <input type="hidden" name="_method" value="PUT">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                         <div class="form-group">
-                            <label for="nombre" class="col-md-1 col-xs-1 control-label">Nombre</label>
-                            <div class="col-md-5 col-xs-5">
+                            <label for="nombre" class="col-md-2 col-md-offset-1 col-xs-2 col-xs-offset-1 control-label">Nombre</label>
+                            <div class="col-md-8 col-xs-8">
                                 <input id="nombre" type="text" class="form-control" name="nombre"
                                        value="{{ $insumo->nombre }}" placeholder="Nombre" required autofocus>
 
@@ -27,9 +27,10 @@
                                 @endif
 
                             </div>
-
-                            <label for="descripcion" class="col-md-1 col-xs-1 control-label">Descripción</label>
-                            <div class="col-md-5 col-xs-5">
+                        </div>
+                        <div class="form-group">
+                            <label for="descripcion" class="col-md-2 col-md-offset-1 col-xs-2 col-xs-offset-1 control-label">Descripción</label>
+                            <div class="col-md-8 col-xs-8">
                                 <input id="descripcion" type="text" class="form-control" name="descripcion"
                                        value="{{ $insumo->descripcion }}" placeholder="Descripcion" autofocus>
 
@@ -45,10 +46,8 @@
 
                         <div class="form-group">
 
-                            <label for="precio"
-                                   class="col-md-1 col-xs-1 control-label">Precio
-                                Unitario</label>
-                            <div class="col-md-3 col-xs-3">
+                            <label for="precio" class="col-md-2 col-md-offset-1 col-xs-2 col-xs-offset-1 control-label">Precio Unitario</label>
+                            <div class="col-md-8 col-xs-8">
                                 <input id="precio" type="number" class="form-control"
                                        name="precio"
                                        value="{{ $insumo->precio}}"
@@ -61,20 +60,6 @@
                                       <strong>{{ $errors->first('precio')}}</strong>
                                   </span>
                                 @endif
-                            </div>
-
-                            <label for="stock" class="col-md-1 col-xs-1 control-label">Stock</label>
-                            <div class="col-md-2 col-xs-2">
-                                <input id="stock" type="text" class="form-control" name="stock"
-                                       value="{{ $insumo->stock }}" placeholder="Stock" minlength="8" maxlength="8"
-                                       autofocus disabled="disabled">
-
-                                @if ($errors->has('stock'))
-                                    <span class="help-block">
-                                      <strong>{{ $errors->first('stock')}}</strong>
-                                  </span>
-                                @endif
-
                             </div>
 
                         </div>

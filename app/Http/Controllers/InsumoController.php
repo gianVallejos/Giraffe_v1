@@ -122,8 +122,17 @@ class InsumoController extends Controller
      * @param  \App\Insumo $insumo
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Insumo $insumo)
+    public function destroy($id)
     {
-        //
+      try{
+        $insumo = Insumo::findOrFail($id);
+        $insumo->delete();
+
+        alert()->error('Insumo eliminado correctamente', 'Eliminado' );
+
+        return redirect()->route('insumoindex');
+      }catch(Exception $e){
+        return "Fatal error - ". $e->getMessage();
+      }
     }
 }
