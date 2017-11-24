@@ -49,26 +49,27 @@
                         @else
                           @if(Auth::user()->rol_usuario != 3)
                             &nbsp;
+                            <li>
+                              <a href="{{ url('/') }}">
+                                Inicio
+                              </a>
+                            </li>
+
                             <li class="dropdown">
 
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
-                                    Opciones<span class="caret"></span>
+                                    Personas<span class="caret"></span>
 
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li>
                                         <a href="{{ route('register') }}">
-                                          Registro de Usuarios
+                                          Usuarios
                                         </a>
                                     </li>
                                     <li>
                                         <a href="{{ route('clienteindex') }}">
                                           Clientes
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                          Lista de Ventas
                                         </a>
                                     </li>
                                 </ul>
@@ -83,6 +84,16 @@
                                           Gestión de Productos
                                       </a>
                                   </li>
+                                  <li>
+                                      <a href="{{ route('kardexindex') }}">
+                                          Kardex
+                                      </a>
+                                  </li>
+                                  <li>
+                                      <a href="{{ route('insumoindex') }}">
+                                          Insumos
+                                      </a>
+                                  </li>
                                 </ul>
                             </li>
                             <li class="dropdown">
@@ -91,8 +102,13 @@
                                 </a>
                                 <ul class="dropdown-menu">
                                   <li>
+                                      <a href="{{ route('listaventaindex') }}">
+                                        Lista de Ventas
+                                      </a>
+                                  </li>
+                                  <li>
                                       <a href="#">
-                                          Total de Ventas
+                                          Reporte de Ventas
                                       </a>
                                   </li>
                                 </ul>

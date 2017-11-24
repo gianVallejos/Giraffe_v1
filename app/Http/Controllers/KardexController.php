@@ -27,7 +27,7 @@ class KardexController extends Controller
         try {
             $kardexs = DB::table('kardexes')
                 ->join('insumos', 'kardexes.idInsumo', 'insumos.id')
-                ->select('kardexes.*', 'insumos.nombre', 'insumos.medida', 'insumos.stock')
+                ->select('kardexes.*', 'insumos.nombre as insumo_nombre', 'insumos.medida', 'insumos.stock')
                 ->get();
 
             $insumos = DB::table('insumos')

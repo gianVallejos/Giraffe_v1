@@ -7,22 +7,22 @@
             <div class="col-md-12">
 
                 <div class="panel panel-default">
-                    <div class="panel-heading text-center title">MODIFICAR KARDEX</div>
+                    <div class="panel-heading text-center title"><b>MODIFICAR KARDEX</b></div>
                     <div class="panel-body">
 
-                        <form class="form-horizontal" action="/Giraffe_v1/public/kardexs/{{ $kardex->id }}"
+                        <form class="form-horizontal" action="/Giraffe_v1/kardexs/{{ $kardex->id }}"
                               method="POST">
                             <input type="hidden" name="_method" value="PUT">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                             <div class="form-group">
                                 <label for="concepto"
-                                       class="col-md-1 col-xs-1 control-label">Concepto</label>
-                                <div class="col-md-2 col-xs-2">
+                                       class="col-md-1 col-md-offset-1 col-xs-1 col-xs-offset-1 control-label">Concepto</label>
+                                <div class="col-md-4 col-xs-4">
                                     <?php
                                     $conceptos = array('Entrada', 'Salida');
                                     ?>
-                                    <select name="concepto" id="concepto" class="form-control">
+                                    <select name="concepto" id="concepto" class="form-control" disabled>
                                         <?php           foreach($conceptos as $concepto){                          ?>
                                         <option value="{{ $concepto }}" {{$kardex->concepto == $concepto ? 'selected="selected"': ''}}>{{ $concepto }}</option>
                                         <?php           }                                                 ?>
@@ -31,9 +31,9 @@
 
                                 <label for="id"
                                        class="col-md-1 col-xs-1 control-label">Insumo</label>
-                                <div class="col-md-2 col-xs-2">
+                                <div class="col-md-4 col-xs-4">
 
-                                    <select name="id" id="id" class="form-control">
+                                    <select name="id" id="id" class="form-control" disabled>
                                         @foreach($insumos as $insumo)
                                             <option value="{{ $insumo->id }}"
                                                     {{$kardex->idInsumo == $insumo->id ? 'selected="selected"':''}}>{{ $insumo->nombre }}</option>
@@ -45,8 +45,8 @@
                             <div class="form-group">
 
                                 <label for="factura"
-                                       class="col-md-1 col-xs-1 control-label">N° de Factura</label>
-                                <div class="col-md-3 col-xs-3">
+                                       class="col-md-2 col-md-offset-1 col-xs-2 col-xs-offset-1 control-label">N° de Factura</label>
+                                <div class="col-md-2 col-xs-2">
                                     <input id="factura" type="text" class="form-control"
                                            name="factura"
                                            value="{{ $kardex->factura}}" placeholder="Factura" min="0"
@@ -62,7 +62,7 @@
 
                                 <label for="cantidad"
                                        class="col-md-1 col-xs-1 control-label">Cantidad</label>
-                                <div class="col-md-3 col-xs-3">
+                                <div class="col-md-2 col-xs-2">
                                     <input id="cantidad" type="number" class="form-control"
                                            name="cantidad"
                                            value="{{ $kardex->cantidad}}" placeholder="Cantidad"
@@ -77,17 +77,10 @@
                                     @endif
                                 </div>
 
-                                <div class="col-md-3 col-xs-3" style="display: none;">
-                                    <input id="cantidadold" type="number" class="form-control"
-                                           name="cantidadold"
-                                           value="{{ $kardex->cantidad}}" required
-                                           autofocus>
-                                </div>
-
                                 <label for="preciounitario"
                                        class="col-md-1 col-xs-1 control-label">Precio
                                     Unitario</label>
-                                <div class="col-md-3 col-xs-3">
+                                <div class="col-md-2 col-xs-2">
                                     <input id="preciounitario" type="number" class="form-control"
                                            name="preciounitario"
                                            value="{{ $kardex->preciounitario }}"

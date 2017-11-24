@@ -2,31 +2,27 @@
 
 @section('content')
 
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
-            <div class="col-md-12 text-center">
-                <button class="btn btn-warning" type="button" data-toggle="collapse"
-                        data-target="#collapseNewClient"
-                        aria-expanded="false" aria-controls="collapseNewClient">
-                    <img src="http://localhost/Giraffe_v1/public/images/panel-icon.png" style="width: 10px;">
-                    <strong style="font-size: 12px;">Nuevo Insumo</strong>
-                </button>
+            <div class="col-lg-6 col-lg-offset-3">
+              <div class="alert alert-warning text-center">
+                Para continuar gestionando <strong>kardex</strong> haz click <a href="{{ route('kardexindex') }}">aquí</a>.
+              </div>
+            </div>
+            <div class="col-lg-4 col-lg-offset-4 col-md-10 col-md-2 text-center">
 
-                <div class="collapse" id="collapseNewClient">
-                    <div class="card card-body">
                         <div class="panel panel-default">
-                            <div class="panel-body" style="height: 280px;">
-                                <div id="table-wrapper">
-                                    <div class="panel-body">
+                            <div class="panel-heading text-center title"><b>AGREGAR INSUMO</b></div>
+                            <div class="panel-body" style="padding-top: 25px;">
 
-                                        <form class="form-horizontal" action="/Giraffe_v1/public/insumos"
+                                        <form class="form-horizontal" action="/Giraffe_v1/insumos"
                                               method="POST">
                                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                                             <div class="form-group">
                                                 <label for="nombre"
-                                                       class="col-md-1 col-xs-1 control-label">Nombre</label>
-                                                <div class="col-md-3 col-xs-3">
+                                                       class="col-md-2 col-md-offset-1 col-xs-2 col-xs-offset-1 control-label">Nombre</label>
+                                                <div class="col-md-8 col-xs-8">
                                                     <input id="nombre" type="text" class="form-control"
                                                            name="nombre"
                                                            value="{{ old('nombre')}}" placeholder="Nombre"
@@ -40,69 +36,67 @@
                                                     @endif
 
                                                 </div>
+                                            </div>
+                                            <div class="form-group">
 
-                                                <label for="descripcion"
-                                                       class="col-md-1 col-xs-1 control-label">Descripción</label>
-                                                <div class="col-md-4 col-xs-4">
-                                                    <input id="descripcion" type="text" class="form-control"
-                                                           name="descripcion"
-                                                           value="{{ old('descripcion')}}" placeholder="Descripción"
-                                                           autofocus>
+                                              <label for="descripcion"
+                                              class="col-md-2 col-md-offset-1 col-xs-2 col-xs-offset-1 control-label">Descripción</label>
+                                              <div class="col-md-8 col-xs-8">
+                                                <input id="descripcion" type="text" class="form-control"
+                                                name="descripcion"
+                                                value="{{ old('descripcion')}}" placeholder="Descripción"
+                                                autofocus>
 
-                                                    @if ($errors->has('descripcion'))
-                                                        <span class="help-block">
-                                      <strong>{{ $errors->first('descripcion')}}</strong>
-                                  </span>
-                                                    @endif
+                                                @if ($errors->has('descripcion'))
+                                                <span class="help-block">
+                                                  <strong>{{ $errors->first('descripcion')}}</strong>
+                                                </span>
+                                                @endif
 
-                                                </div>
-
+                                              </div>
                                             </div>
 
                                             <div class="form-group">
 
-                                                <label for="precio"
-                                                       class="col-md-1 col-xs-1 control-label">Precio
-                                                    Unitario</label>
-                                                <div class="col-md-3 col-xs-3">
-                                                    <input id="precio" type="number" class="form-control"
-                                                           name="precio"
-                                                           value="{{ old('precio')}}"
-                                                           placeholder="Precio"
-                                                           min="0"
-                                                           step=".1" autofocus>
+                                              <label for="precio" class="col-md-2 col-md-offset-1 col-xs-2 col-xs-offset-1 control-label">Precio Unitario</label>
+                                              <div class="col-md-8 col-xs-8">
+                                                <input id="precio" type="number" class="form-control"
+                                                name="precio"
+                                                value="{{ old('precio')}}"
+                                                placeholder="Precio"
+                                                min="0"
+                                                step=".1" required>
 
-                                                    @if ($errors->has('precio'))
-                                                        <span class="help-block">
-                                      <strong>{{ $errors->first('precio')}}</strong>
-                                  </span>
-                                                    @endif
-                                                </div>
-
+                                                @if ($errors->has('precio'))
+                                                <span class="help-block">
+                                                  <strong>{{ $errors->first('precio')}}</strong>
+                                                </span>
+                                                @endif
+                                              </div>
                                             </div>
 
                                             <div class="form-group">
-                                                <div class="col-md-12 text-center" style="padding-top: 25px;">
-                                                    <button type="submit" class="btn-giraffe">
-                                                        Agregar
-                                                    </button>
-                                                    <button type="reset" class="btn-giraffe">
-                                                        Limpiar
-                                                    </button>
-                                                </div>
+                                              <div class="col-md-12 text-center" style="padding-top: 25px;">
+                                                <button type="submit" class="btn-giraffe">
+                                                  Agregar
+                                                </button>
+                                                <button type="reset" class="btn-giraffe">
+                                                  Limpiar
+                                                </button>
+                                              </div>
                                             </div>
+                                            </div>
+
 
                                         </form>
-                                    </div>
-                                </div>
+
                             </div>
                         </div>
-                    </div>
                 </div>
-                <hr>
 
+              <div class="col-lg-8 col-lg-offset-2 col-md-12 col-xs-12">
                 <div class="panel panel-default">
-                    <div class="panel-heading text-center title">INSUMO</div>
+                    <div class="panel-heading text-center title"><b>INSUMO</b></div>
                     <div class="panel-body">
                         <div id="table-wrapper">
                             <div id="table-scroll" style="height: 30vh;">
@@ -131,7 +125,7 @@
                                                         class="btn btn-xs btn-warning">Editar</a>
                                             </td>
 
-                                            @if(Auth::user()->id == 1)
+                                            @if(Auth::user()->rol_usuario == 1)
                                                 <td class="text-center">
                                                     <form action="{{ route('insumos.destroy', $insumo->id) }}"
                                                           method="post">
