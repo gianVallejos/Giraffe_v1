@@ -13,7 +13,6 @@ function mostrarDetallePersonal(php_data) {
 }
 
 function mostrarDetalleCliente(php_data) {
-
     // console.log(JSON.parse(php_data));
 
     data = JSON.parse(php_data);

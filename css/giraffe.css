@@ -385,3 +385,10 @@ footer .texto a{
 .sweet-alert h2{
     margin-bottom: 7px;
 }
+
+/*Inmprimir*/
+@media print {
+    #btnDetalleVenta{
+        display: none;
+    }
+}

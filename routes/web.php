@@ -50,7 +50,11 @@ Route::get('ingresos', 'IngresoController@index')->name('ingresoindex');
 Route::get('api-v1/save-venta', 'WsGiraffeController@saveVenta')->name('saveVenta');
 Route::get('api-v1/save-cuadrar-caja', 'WsGiraffeController@saveCuadrarCaja')->name('saveCuadrarCaja');
 Route::get('api-v1/get-detalle-venta/{idVenta}', 'WsGiraffeController@getDetalleVenta')->name('getdetalleVenta');
+
 Route::get('api-v1/get-buscarReporteVenta/{fechaInicial}/{fechaFinal}/{personalId}', 'WsGiraffeController@getReporteVenta')->name('getReporteVenta');
+Route::get('api-v1/get-buscarReporteVentaPersonaId/{personalId}', 'WsGiraffeController@getReporteVentaByUserId')->name('getReporteVentaByUserId');
+Route::get('api-v1/get-buscarReporteVentaDates/{fechaInicial}/{fechaFinal}', 'WsGiraffeController@getReporteVentaByDates')->name('getReporteVentaByDates');
+
 Route::get('api-v1/get-buscarReporteVentaList/{idVenta}', 'WsGiraffeController@getDetalleVentaList')->name('getDetalleVentaList');
 
 //Kardex

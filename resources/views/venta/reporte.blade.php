@@ -52,7 +52,8 @@
                                         </div>
                                         <div class="col-md-2 col-xs-2">
                                             <select name="personal" id="personalId" class="form-control">
-                                                <?php           foreach($personals as $personal){                          ?>
+                                                <option value="-1">Todos los Empleados</option>
+                                                <?php foreach($personals as $personal){                          ?>
                                                 <option value="{{ $personal->id }}"
                                                         @if(old('personal') == '{{ personal }}')selected @endif>{{ $personal->name }}</option>
                                                 <?php           }                                                 ?>
@@ -93,7 +94,7 @@
                                             <td class="text-center">{{ $venta->cajero }}</td>
                                             <td class="text-center">{{ $venta->monto }}</td>
                                             <td class="text-center">
-                                                <button class="btn btn-xs btn-success"
+                                                <button id="btnDetalleVenta" class="btn btn-xs btn-success"
                                                         onclick="mostrarDetalleVentaList('{{ $venta->id }}')"
                                                         data-toggle="modal" data-target="#myModal">Detalle de Venta
                                                 </button>
@@ -105,6 +106,10 @@
                                 </table>
                             </div>
                         </div>
+
+                        <button id="btn-print-reporte" type="button" class="btn-giraffe" name="button" data-toggle="tooltip" title="Teclado: Control+i">
+                            IMPRIMIR
+                        </button>
                     </div>
                 </div>
             </div>

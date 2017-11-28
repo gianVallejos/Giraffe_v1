@@ -375,6 +375,10 @@ $(document).ready(function(){
         $('#vouchercontent').printThis();
     });
 
+    $('#btn-print-reporte').click(function(){
+        $('#tablaVentas').printThis();
+    });
+
     function resetDataOfPages(){
         cartShopping = new Array();
         montoDeVenta = 0;

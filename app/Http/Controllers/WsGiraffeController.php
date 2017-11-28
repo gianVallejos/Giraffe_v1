@@ -97,9 +97,31 @@ class WsGiraffeController extends Controller
         $date_fin = $ff;
         $personal_id = $id;
 
+        if ($date_inicio != null && $date_fin != null && $personal_id != -1) {
+            $res = DB::select('call getAllVentasByDatesUserId("' . $date_inicio . '", "' . $date_fin . '", "' . $personal_id . '")');
+        }
+
+        print(json_encode($res));
+    }
+
+    public function getReporteVentaByUserId($id)
+    {
+        $personal_id = $id;
+
         if ($personal_id != -1) {
             $res = DB::select('call getAllVentasByUserId("' . $personal_id . '")');
         } else {
+            $res = DB::select('call getAllVentas()');
+        }
+
+        print(json_encode($res));
+    }
+
+    public function getReporteVentaByDates($fi, $ff){
+        $date_inicio = $fi;
+        $date_fin = $ff;
+
+        if ($date_inicio != null && $date_fin != null) {
             $res = DB::select('call getAllVentasByDates("' . $date_inicio . '", "' . $date_fin . '")');
         }
 

@@ -60,12 +60,12 @@ $('#form-buscarVentas').submit(function (event) {
     var fechaFinal = $('#fechafinal').val();
     var personalId = $('#personalId').val();
 
-    console.log(personalId);
+    console.log(personalId, fechaInicial, fechaFinal);
 
-    if (validarFechas(fechaInicial, fechaFinal)) {
+    if (fechaInicial == "" && fechaFinal == "" && personalId != -1) {
         $.ajax({
             type: 'GET',
-            url: 'http://localhost/Giraffe_v1/api-v1/get-buscarReporteVenta/' + fechaInicial + '/' + fechaFinal + '/' + personalId,
+            url: 'http://localhost/Giraffe_v1/api-v1/get-buscarReporteVentaPersonaId/' + personalId,
             dataType: 'json',
             contentType: "application/json; charset=utf-8",
 
@@ -77,8 +77,61 @@ $('#form-buscarVentas').submit(function (event) {
                 swal('Atención', 'Ha ocurrido un problema. Contactar con el webmaster', 'warning');
             }
         });
+    } else if (fechaInicial != "" && fechaFinal != "" && personalId == -1) {
+        if (validarFechas(fechaInicial, fechaFinal)) {
+            $.ajax({
+                type: 'GET',
+                url: 'http://localhost/Giraffe_v1/api-v1/get-buscarReporteVentaDates/' + fechaInicial + '/' + fechaFinal,
+                dataType: 'json',
+                contentType: "application/json; charset=utf-8",
+
+                success: function (data) {
+                    console.log(data);
+                    agregarATabla(data, 'tablaVentas');
+                },
+                error: function () {
+                    swal('Atención', 'Ha ocurrido un problema. Contactar con el webmaster', 'warning');
+                }
+            });
+        }
+    } else if (fechaInicial != "" && fechaFinal != "" && personalId != -1) {
+        if (validarFechas(fechaInicial, fechaFinal)) {
+            $.ajax({
+                type: 'GET',
+                url: 'http://localhost/Giraffe_v1/api-v1/get-buscarReporteVenta/' + fechaInicial + '/' + fechaFinal + '/' + personalId,
+                dataType: 'json',
+                contentType: "application/json; charset=utf-8",
+
+                success: function (data) {
+                    console.log(data);
+                    agregarATabla(data, 'tablaVentas');
+                },
+                error: function () {
+                    swal('Atención', 'Ha ocurrido un problema. Contactar con el webmaster', 'warning');
+                }
+            });
+        }
+    } else if (fechaInicial == "" && fechaFinal == "" && personalId == -1) {
+
+        $.ajax({
+            type: 'GET',
+            url: 'http://localhost/Giraffe_v1/api-v1/get-buscarReporteVentaPersonaId/' + personalId,
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+
+            success: function (data) {
+                console.log(data);
+                agregarATabla(data, 'tablaVentas');
+            },
+            error: function () {
+                swal('Atención', 'Ha ocurrido un problema. Contactar con el webmaster', 'warning');
+            }
+        });
+
     }
-});
+
+})
+;
 
 function agregarATabla(data, table_id) {
 

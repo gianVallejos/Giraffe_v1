@@ -6,6 +6,7 @@ use App\Venta;
 use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use function Sodium\add;
 
 class VentaController extends Controller
 {
