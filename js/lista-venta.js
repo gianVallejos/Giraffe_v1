@@ -70,6 +70,7 @@ $('#form-buscarVentas').submit(function (event) {
             contentType: "application/json; charset=utf-8",
 
             success: function (data) {
+                dataPdf = data;
                 console.log(data);
                 agregarATabla(data, 'tablaVentas');
             },
@@ -103,6 +104,7 @@ $('#form-buscarVentas').submit(function (event) {
                 contentType: "application/json; charset=utf-8",
 
                 success: function (data) {
+                    dataPdf = data;
                     console.log(data);
                     agregarATabla(data, 'tablaVentas');
                 },
@@ -120,6 +122,7 @@ $('#form-buscarVentas').submit(function (event) {
             contentType: "application/json; charset=utf-8",
 
             success: function (data) {
+                dataPdf = JSON.parse(data);
                 console.log(data);
                 agregarATabla(data, 'tablaVentas');
             },
@@ -132,6 +135,37 @@ $('#form-buscarVentas').submit(function (event) {
 
 })
 ;
+
+$('#btn-download-reporte').click(function (event) {
+    event.preventDefault();
+
+    var fechaInicial = $('#fechainicial').val();
+    var fechaFinal = $('#fechafinal').val();
+    var personalId = $('#personalId').val();
+
+    if (fechaInicial == "" && fechaFinal == ""){
+        fechaInicial = -1;
+        fechaFinal = -1;
+    }
+
+    console.log(personalId, fechaInicial, fechaFinal);
+
+    $.ajax({
+        type: 'GET',
+        url: 'http://localhost/Giraffe_v1/api-v1/put-downloadpdf/',
+        dataType: 'json',
+        data: {fechainicial: fechaInicial,
+               fechafinal: fechaFinal,
+               personaid: personalId},
+        contentType: "application/json; charset=utf-8",
+        success: function () {
+            // swal('Enviado');
+        },
+        error: function () {
+            swal('Atención', 'Ha ocurrido un problema. Contactar con el webmaster', 'warning');
+        }
+    });
+});
 
 function agregarATabla(data, table_id) {
 

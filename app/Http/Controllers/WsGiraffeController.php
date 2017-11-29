@@ -117,7 +117,8 @@ class WsGiraffeController extends Controller
         print(json_encode($res));
     }
 
-    public function getReporteVentaByDates($fi, $ff){
+    public function getReporteVentaByDates($fi, $ff)
+    {
         $date_inicio = $fi;
         $date_fin = $ff;
 
@@ -126,6 +127,41 @@ class WsGiraffeController extends Controller
         }
 
         print(json_encode($res));
+    }
+
+    public function reporteVentasPdf(Request $request)
+    {
+        $fechaInicial = $request->input('fechainicial');
+        $fechaFinal = $request->input('fechafinal');
+        $personalId = $request->input('personaid');
+        echo $fechaInicial . $fechaFinal . $personalId;
+
+        $ventasDescargar = array();
+
+        if ($fechaInicial == -1 && $fechaFinal == -1 && $personalId != -1) {
+            if ($personalId != -1) {
+                $res = DB::select('call getAllVentasByUserId("' . $personalId . '")');
+                $ventasDescargar = $res;
+            } else {
+                $res = DB::select('call getAllVentas()');
+                $ventasDescargar = $res;
+            }
+        } else if ($fechaInicial != -1 && $fechaFinal != -1 && $personalId == -1) {
+            $res = DB::select('call getAllVentasByDatesUserId("' . $fechaInicial . '", "' . $fechaFinal . '", "' . $personalId . '")');
+            $ventasDescargar = $res;
+        } else if ($fechaInicial != -1 && $fechaFinal != -1 && $personalId != -1) {
+            $res = DB::select('call getAllVentasByDatesUserId("' . $fechaInicial . '", "' . $fechaInicial . '", "' . $personalId . '")');
+            $ventasDescargar = $res;
+        } else if ($fechaInicial == -1 && $fechaFinal == -1 && $personalId == -1) {
+            $res = DB::select('call getAllVentas()');
+            $ventasDescargar = $res;
+        }
+
+        $view = \View::make('pdf.reporteVentas', compact('ventasDescargar'))->render();
+        $pdf = \App::make('dompdf.wrapper');
+        $pdf->loadHTML($view);
+
+        return $pdf->download('reporte.pdf');
     }
 
 }

@@ -110,6 +110,9 @@
                         <button id="btn-print-reporte" type="button" class="btn-giraffe" name="button" data-toggle="tooltip" title="Teclado: Control+i">
                             IMPRIMIR
                         </button>
+                        <button id="btn-download-reporte" type="button" class="btn-giraffe" name="button" data-toggle="tooltip" title="Teclado: Control+i">
+                            DESCARGAR PDF
+                        </button>
                     </div>
                 </div>
             </div>
@@ -182,3 +185,4 @@
     </div>
 
 @endsection
+

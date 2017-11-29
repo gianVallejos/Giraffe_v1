@@ -56,6 +56,7 @@ Route::get('api-v1/get-buscarReporteVentaPersonaId/{personalId}', 'WsGiraffeCont
 Route::get('api-v1/get-buscarReporteVentaDates/{fechaInicial}/{fechaFinal}', 'WsGiraffeController@getReporteVentaByDates')->name('getReporteVentaByDates');
 
 Route::get('api-v1/get-buscarReporteVentaList/{idVenta}', 'WsGiraffeController@getDetalleVentaList')->name('getDetalleVentaList');
+Route::get('api-v1/put-downloadpdf', 'WsGiraffeController@reporteVentasPdf')->name('reporteVentasPdf');
 
 //Kardex
 Route::resource('kardexs', 'KardexController');
