@@ -15,7 +15,7 @@
     <link href="{{ asset('css/table.css?v=1.0.2') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('sweetalert/sweetalert.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/giraffe.css?v=1.0.22') }}" rel="stylesheet">
+    <link href="{{ asset('css/giraffe.css?v=1.0.23') }}" rel="stylesheet">
 <!-- <link rel="stylesheet" href="{{ asset('css/modal-fullscreen.css?v=1.0.12') }}"> -->
 
     <link rel="shortcut icon" href="{{{ asset('images/favicon.ico') }}}">
@@ -47,74 +47,77 @@
                 <ul class="nav navbar-nav">
                     @guest
                         @else
-                          @if(Auth::user()->rol_usuario != 3)
-                            &nbsp;
-                            <li>
-                              <a href="{{ url('/') }}">
-                                Inicio
-                              </a>
-                            </li>
+                            @if(Auth::user()->rol_usuario != 3)
+                                &nbsp;
+                                <li>
+                                    <a href="{{ url('/') }}">
+                                        Inicio
+                                    </a>
+                                </li>
 
-                            <li class="dropdown">
+                                <li class="dropdown">
 
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
-                                    Personas<span class="caret"></span>
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                       aria-expanded="false" aria-haspopup="true">
+                                        Personas<span class="caret"></span>
 
-                                </a>
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a href="{{ route('register') }}">
-                                          Usuarios
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ route('clienteindex') }}">
-                                          Clientes
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
-                                    Productos<span class="caret"></span>
-                                </a>
-                                <ul class="dropdown-menu">
-                                  <li>
-                                      <a href="{{ route('productoindex') }}">
-                                          Gestión de Productos
-                                      </a>
-                                  </li>
-                                  <li>
-                                      <a href="{{ route('kardexindex') }}">
-                                          Kardex
-                                      </a>
-                                  </li>
-                                  <li>
-                                      <a href="{{ route('insumoindex') }}">
-                                          Insumos
-                                      </a>
-                                  </li>
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
-                                    Ventas<span class="caret"></span>
-                                </a>
-                                <ul class="dropdown-menu">
-                                  <li>
-                                      <a href="{{ route('listaventaindex') }}">
-                                        Lista de Ventas
-                                      </a>
-                                  </li>
-                                  <li>
-                                      <a href="#">
-                                          Reporte de Ventas
-                                      </a>
-                                  </li>
-                                </ul>
-                            </li>
-                          @endif
-                      @endguest
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a href="{{ route('register') }}">
+                                                Usuarios
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ route('clienteindex') }}">
+                                                Clientes
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                       aria-expanded="false" aria-haspopup="true">
+                                        Productos<span class="caret"></span>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a href="{{ route('productoindex') }}">
+                                                Gestión de Productos
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ route('kardexindex') }}">
+                                                Kardex
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{{ route('insumoindex') }}">
+                                                Insumos
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                       aria-expanded="false" aria-haspopup="true">
+                                        Ventas<span class="caret"></span>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a href="{{ route('listaventaindex') }}">
+                                                Lista de Ventas
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{{route('orderDetail')}}">
+                                                Reporte de Ventas
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            @endif
+                            @endguest
                 </ul>
 
                 <!-- Right Side Of Navbar -->
@@ -171,7 +174,8 @@
 <script src="{{ asset('js/app.js') }}"></script>
 <!-- <script src="{{ asset('js/fullscreen-modal.js?v=1.0.2') }}"></script> -->
 <script src="{{ asset('js/printThis.js?v=1.0.1') }}"></script>
-<script src="{{ asset('js/venta.js?v=1.0.17') }}"></script>
+<script src="{{ asset('js/venta.js?v=1.0.18') }}"></script>
+<script src="{{ asset('js/lista-venta.js?v=1.0.4') }}"></script>
 <script src="{{ asset('js/personal.js?v=1.0.1') }}"></script>
 <script src="{{ asset('js/cuadrecaja.js?v=1.0.7') }}"></script>
 <script src="{{ asset('js/detalle.js?v=1.0.3') }}"></script>

@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Venta;
 use Auth;
+use Barryvdh\DomPDF\PDF;
+use Barryvdh\DomPDF\Facade;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
 
 class VentaController extends Controller
@@ -48,7 +51,7 @@ class VentaController extends Controller
         //Ventas con Detalle
         $ventas = DB::select('call getAllVentas()');
 
-        return view($this->path . '.lista', compact('ventas', 'personals'));
+        return view($this->path . '.reporte', compact('ventas', 'personals'));
     }
 
     public function caja()
@@ -75,20 +78,22 @@ class VentaController extends Controller
         return view($this->path . '.cuadrarcaja');
     }
 
-    public function listaVenta(){
+    public function listaVenta()
+    {
         $idUser = Auth::user()->id;
         $ventas = DB::select('call getAllVentasNoCerradasByIdVendedor(' . $idUser . ')');
 
-        $ventas_user = DB::select('call getAllVentasByUserId('. $idUser .')');
+        $ventas_user = DB::select('call getAllVentasByUserId(' . $idUser . ')');
 
         return view($this->path . '.listaventa', compact('ventas', 'ventas_user'));
     }
 
-    public function listaTotalVenta(){
-      $ventas = DB::select('call getAllVentas()');
+    public function listaTotalVenta()
+    {
+        $ventas = DB::select('call getAllVentas()');
 
 
-      return view($this->path . '.listaventa', compact('ventas'));
+        return view($this->path . '.listaventa', compact('ventas'));
     }
 
     /**
