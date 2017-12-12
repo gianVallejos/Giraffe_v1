@@ -2,7 +2,7 @@
 MySQL Backup
 Source Server Version: 5.5.5
 Source Database: giraffe_bd
-Date: 24/11/2017 15:56:53
+Date: 01/12/2017 11:04:21
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -332,7 +332,7 @@ DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `getVentaByIdVenta`(IN XID_VENTA INT)
 BEGIN
 
-		SELECT ventas.id as idVenta, fechahora as fecha, users.name as cajero, SUM(pd.precio) as monto, montoCliente as pago FROM ventas
+		SELECT ventas.id as idVenta, fechahora as fecha, users.name as cajero, SUM(pd.precio * dv.cantidad) as monto, montoCliente as pago FROM ventas
 			INNER JOIN users on users.id = ventas.idVendedor
 			INNER JOIN detalleventas as dv on dv.idVenta = ventas.id
 			INNER JOIN productos as pd on pd.id = dv.idProducto
